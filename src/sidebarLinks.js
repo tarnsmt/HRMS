@@ -1,0 +1,48 @@
+export default [
+  {
+    name: 'Dashboard',
+    icon: 'ti-panel',
+    collapsed: false,
+    children: [{
+      name: 'Overview',
+      path: '/admin/overview'
+    },
+    {
+      name: 'User',
+      path: '/admin/user'
+    }]
+  },
+  {
+    name: 'Forms',
+    icon: 'ti-clipboard',
+    children: [{
+      name: 'Task Forms',
+      path: '/forms/task'
+    }
+    ]
+  },
+  {
+    name: 'Tasks',
+    icon: 'ti-view-list-alt',
+    path: '/table-list/jobManagement'
+  },
+  {
+    name: 'Employee',
+    icon: 'ti-user',
+    collapsed: true,
+    children: [{
+      name: 'Salary',
+      path: '/table-list/salary'
+    },
+    {
+      name: 'Information',
+      path: '/table-list/info'
+    }
+    ]
+  },
+  {
+    name: 'Calendar',
+    icon: 'ti-calendar',
+    path: '/calendar'
+  }
+]
