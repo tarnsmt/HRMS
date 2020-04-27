@@ -138,13 +138,18 @@
         propsToSearch: ['name', 'email'],
         tableColumns: [
           {
+            prop: 'id',
+            label: 'Id',
+            minWidth: 50
+          },
+          {
             prop: 'name',
             label: 'Name',
             minWidth: 200
           },
           {
-            prop: 'nickname',
-            label: 'Nickname',
+            prop: 'department',
+            label: 'Department',
             minWidth: 100
           },
           {
@@ -169,6 +174,7 @@
         localStorage.setItem('storageNickname', row.nickname)
         localStorage.setItem('storageSalary', row.salary)
         localStorage.setItem('storagePosition', row.position)
+        localStorage.setItem('storageDepartment', row.department)
       },
       handleDelete (index, row) {
         alert(`Your want to delete ${row.name}`)

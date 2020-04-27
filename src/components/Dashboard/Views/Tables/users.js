@@ -6,6 +6,7 @@ export default [
     'email': 'otho.smitham@example.com',
     'salary': '13098.00',
     'position': 'designer',
+    'department': 'editorial',
     'age': 39
   },
   {
@@ -15,6 +16,7 @@ export default [
     'email': 'pollich.cecilia@example.com',
     'salary': '35978.00',
     'position': 'designer',
+    'department': 'editorial',
     'age': 26
   },
   {
@@ -24,6 +26,7 @@ export default [
     'email': 'little.myrna@example.net',
     'salary': '26278.00',
     'position': 'designer',
+    'department': 'editorial',
     'age': 48
   },
   {
@@ -33,6 +36,7 @@ export default [
     'email': 'dock47@example.org',
     'salary': '25537.00',
     'position': 'designer',
+    'department': 'editorial',
     'age': 27
   },
   {
@@ -42,6 +46,7 @@ export default [
     'email': 'ugrady@example.org',
     'salary': '49003.00',
     'position': 'developer',
+    'department': 'editorial',
     'age': 21
   },
   {
@@ -51,6 +56,7 @@ export default [
     'email': 'amari.rau@example.com',
     'salary': '12383.00',
     'position': 'designer',
+    'department': 'editorial',
     'age': 48
   },
   {
@@ -60,6 +66,7 @@ export default [
     'email': 'adrien.baumbach@example.org',
     'salary': '18512.00',
     'position': 'designer',
+    'department': 'editorial',
     'age': 31
   },
   {
@@ -69,6 +76,7 @@ export default [
     'email': 'ohettinger@example.net',
     'salary': '31209.00',
     'position': 'finance',
+    'department': 'editorial',
     'age': 28
   },
   {
@@ -78,6 +86,7 @@ export default [
     'email': 'stefan99@example.com',
     'salary': '36920.00',
     'position': 'developer',
+    'department': 'editorial',
     'age': 53
   },
   {
@@ -87,6 +96,7 @@ export default [
     'email': 'ejacobson@example.org',
     'salary': '35616.00',
     'position': 'developer',
+    'department': 'editorial',
     'age': 27
   },
   {
@@ -96,6 +106,7 @@ export default [
     'email': 'ayost@example.com',
     'salary': '30790.00',
     'position': 'developer',
+    'department': 'editorial',
     'age': 29
   },
   {
@@ -105,6 +116,7 @@ export default [
     'email': 'ckassulke@example.net',
     'salary': '35785.00',
     'position': 'developer',
+    'department': 'finance',
     'age': 27
   },
   {
@@ -114,6 +126,7 @@ export default [
     'email': 'bashirian.hyman@example.net',
     'salary': '31836.00',
     'position': 'marketing',
+    'department': 'finance',
     'age': 35
   },
   {
@@ -123,6 +136,7 @@ export default [
     'email': 'janis71@example.org',
     'salary': '11902.00',
     'position': 'marketing',
+    'department': 'finance',
     'age': 38
   },
   {
@@ -132,6 +146,7 @@ export default [
     'email': 'dusty74@example.net',
     'salary': '11927.00',
     'position': 'accountant',
+    'department': 'finance',
     'age': 45
   },
   {
@@ -141,6 +156,7 @@ export default [
     'email': 'gbogisich@example.org',
     'salary': '44686.00',
     'position': 'accountant',
+    'department': 'finance',
     'age': 43
   },
   {
@@ -150,6 +166,7 @@ export default [
     'email': 'btorp@example.com',
     'salary': '25055.00',
     'position': 'accountant',
+    'department': 'marketing',
     'age': 29
   },
   {
@@ -159,6 +176,7 @@ export default [
     'email': 'phoebe.sauer@example.org',
     'salary': '11650.00',
     'position': 'accountant',
+    'department': 'marketing',
     'age': 24
   },
   {
@@ -168,6 +186,7 @@ export default [
     'email': 'asawayn@example.org',
     'salary': '46962.00',
     'position': 'manager',
+    'department': 'marketing',
     'age': 53
   },
   {
@@ -177,6 +196,7 @@ export default [
     'email': 'laila.hintz@example.org',
     'salary': '12928.00',
     'position': 'accountant',
+    'department': 'marketing',
     'age': 46
   },
   {
@@ -186,6 +206,7 @@ export default [
     'email': 'wfay@example.org',
     'salary': '22638.00',
     'position': 'accountant',
+    'department': 'marketing',
     'age': 26
   },
   {
@@ -195,6 +216,7 @@ export default [
     'email': 'gregoria.jakubowski@example.com',
     'salary': '49345.00',
     'position': 'accountant',
+    'department': 'marketing',
     'age': 42
   },
   {
@@ -204,6 +226,7 @@ export default [
     'email': 'ltorphy@example.com',
     'salary': '17560.00',
     'position': 'manager',
+    'department': 'marketing',
     'age': 42
   },
   {
@@ -213,6 +236,7 @@ export default [
     'email': 'ivy51@example.net',
     'salary': '35370.00',
     'position': 'manager',
+    'department': 'marketing',
     'age': 30
   },
   {
@@ -222,6 +246,7 @@ export default [
     'email': 'alisa83@example.net',
     'salary': '32725.00',
     'position': 'manager',
+    'department': 'marketing',
     'age': 24
   },
   {
@@ -231,6 +256,7 @@ export default [
     'email': 'bosco.shaina@example.net',
     'salary': '9844.00',
     'position': 'manager',
+    'department': 'marketing',
     'age': 23
   },
   {
@@ -240,6 +266,7 @@ export default [
     'email': 'satterfield.jonathan@example.com',
     'salary': '41950.00',
     'position': 'manager',
+    'department': 'marketing',
     'age': 25
   },
   {
@@ -249,6 +276,7 @@ export default [
     'email': 'tracy.barrows@example.com',
     'salary': '41803.00',
     'position': 'sale',
+    'department': 'marketing',
     'age': 50
   },
   {
@@ -258,6 +286,7 @@ export default [
     'email': 'gerhard65@example.org',
     'salary': '22896.00',
     'position': 'sale',
+    'department': 'marketing',
     'age': 43
   },
   {
@@ -267,6 +296,7 @@ export default [
     'email': 'crystel66@example.net',
     'salary': '18805.00',
     'position': 'sale',
+    'department': 'marketing',
     'age': 43
   },
   {
@@ -276,6 +306,7 @@ export default [
     'email': 'sandrine06@example.net',
     'salary': '16644.00',
     'position': 'sale',
+    'department': 'marketing',
     'age': 32
   },
   {
@@ -285,6 +316,7 @@ export default [
     'email': 'jborer@example.net',
     'salary': '35728.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 42
   },
   {
@@ -294,6 +326,7 @@ export default [
     'email': 'ondricka.lurline@example.org',
     'salary': '44574.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 35
   },
   {
@@ -303,6 +336,7 @@ export default [
     'email': 'rfeest@example.net',
     'salary': '19949.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 48
   },
   {
@@ -312,6 +346,7 @@ export default [
     'email': 'ila24@example.net',
     'salary': '36323.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 51
   },
   {
@@ -321,6 +356,7 @@ export default [
     'email': 'jarred77@example.com',
     'salary': '48462.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 42
   },
   {
@@ -330,6 +366,7 @@ export default [
     'email': 'fgoyette@example.net',
     'salary': '19601.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 42
   },
   {
@@ -339,6 +376,7 @@ export default [
     'email': 'ericka44@example.net',
     'salary': '33149.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 35
   },
   {
@@ -348,6 +386,7 @@ export default [
     'email': 'jlegros@example.net',
     'salary': '21951.00',
     'position': 'creator',
+    'department': 'marketing',
     'age': 40
   },
   {
@@ -357,6 +396,7 @@ export default [
     'email': 'franecki.gerald@example.org',
     'salary': '41552.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 53
   },
   {
@@ -366,6 +406,7 @@ export default [
     'email': 'ldeckow@example.net',
     'salary': '22709.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 42
   },
   {
@@ -375,6 +416,7 @@ export default [
     'email': 'gladyce84@example.com',
     'salary': '32354.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 25
   },
   {
@@ -384,6 +426,7 @@ export default [
     'email': 'kessler.helen@example.net',
     'salary': '45086.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 54
   },
   {
@@ -393,6 +436,7 @@ export default [
     'email': 'eudora36@example.net',
     'salary': '15661.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 46
   },
   {
@@ -402,6 +446,7 @@ export default [
     'email': 'halvorson.theodora@example.org',
     'salary': '15862.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 39
   },
   {
@@ -411,6 +456,7 @@ export default [
     'email': 'trantow.neoma@example.com',
     'salary': '12544.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 25
   },
   {
@@ -420,6 +466,7 @@ export default [
     'email': 'bhermiston@example.net',
     'salary': '14457.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 50
   },
   {
@@ -429,6 +476,7 @@ export default [
     'email': 'camila.ward@example.com',
     'salary': '40278.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 49
   },
   {
@@ -438,6 +486,7 @@ export default [
     'email': 'pacocha.yesenia@example.org',
     'salary': '9305.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 34
   },
   {
@@ -447,6 +496,7 @@ export default [
     'email': 'kenyatta.oconnell@example.com',
     'salary': '36980.00',
     'position': 'creator',
+    'department': 'finance',
     'age': 38
   }
 ]

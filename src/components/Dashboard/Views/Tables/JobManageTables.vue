@@ -11,21 +11,32 @@
             <el-table-column type="index">
 
             </el-table-column>
-            <el-table-column prop="name"
-                             label="Name">
-            </el-table-column>
-            <el-table-column prop="job"
-                             label="Job Position">
-            </el-table-column>
             <el-table-column prop="project"
                              label="Project">
             </el-table-column>
+            <el-table-column prop="description"
+                  label="Description"
+                  width="305">
+            </el-table-column>
+            <el-table-column prop="start"
+                  label="Start">
+            </el-table-column>
+            <el-table-column prop="due"
+                  label="End">
+            </el-table-column>
             <el-table-column
-              label="Actions">
+              label="More info">
               <template slot-scope="props">
-                <a class="btn btn-simple btn-info btn-xs btn-icon like" @click="handleLike(props.$index, props.row)"><i class="ti-heart"></i></a>
-                <a class="btn btn-simple btn-warning btn-xs btn-icon edit" @click="handleEdit(props.$index, props.row)"><i class="ti-pencil-alt"></i></a>
-                <a class="btn btn-simple btn-danger btn-xs btn-icon remove"  @click="handleDelete(props.$index, props.row)"><i class="ti-close"></i></a>
+                <router-link to="/table-list/task">
+                  <a class="btn btn-simple btn-warning btn-xs btn-icon edit" @click="handleInputConfirm(props.$index, props.row)">
+                    <i class="ti-clipboard"></i>
+                  </a>
+                </router-link>
+              </template>
+            </el-table-column>
+            <el-table-column label="Active" class="text-right" style="text-align:right">
+              <template slot-scope="props" class="text-right" style="text-align:right">
+                <p-switch v-model="props.row.active" style="text-align:right"></p-switch>
               </template>
             </el-table-column>
           </el-table>
@@ -47,57 +58,48 @@
     data () {
       return {
         tableData: [{
-          name: 'Andrew Mike',
-          job: 'Develop',
-          project: 'Project A'
+          project: 'Project A',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+          active: true,
+          start: '9/1/2563',
+          due: '9/2/2563'
         }, {
-          name: 'John Doe',
-          job: 'Design',
-          project: 'Project A'
+          project: 'Project B',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+          active: false,
+          start: '9/1/2563',
+          due: '9/2/2563'
         }, {
-          name: 'Alex Mike',
-          job: 'Design',
-          project: 'Project B'
+          project: 'Project C',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+          active: false,
+          start: '9/1/2563',
+          due: '9/2/2563'
         }, {
-          name: 'Mike Monday',
-          job: 'Marketing',
-          project: 'Project B'
+          project: 'Project D',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+          active: true,
+          start: '9/1/2563',
+          due: '9/2/2563'
         },
         {
-          name: 'Paul dickens',
-          job: 'Communication',
-          project: 'Project C'
+          project: 'Project E',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+          active: false,
+          start: '9/1/2563',
+          due: '9/2/2563'
         }
         ]
       }
     },
     methods: {
-      handleLike (index, row) {
-        alert(`Your clicked on Like button`)
-      },
-      handleEdit (index, row) {
-        alert(`Your want to edit ${row.name}`)
-      },
-      handleDelete (index, row) {
-        alert(`Your want to delete ${row.name}`)
-      },
-      getSummaries (param) {
-        const { columns } = param
-        const sums = []
-        columns.forEach((column, index) => {
-          if (index === 0) {
-            sums[index] = 'Total'
-          } else if (index < columns.length - 1) {
-            sums[index] = ''
-          } else {
-            let sum = 0
-            this.productsTable.forEach((obj) => {
-              sum += obj.quantity * obj.price
-            })
-            sums[index] = `€ ${sum}`
-          }
-        })
-        return sums
+      handleInputConfirm (index, row) {
+        alert(`You want to edit ${row.project} ?`)
+        localStorage.setItem('storageProject', row.project)
+        localStorage.setItem('storageDescription', row.description)
+        localStorage.setItem('storageTeam', row.team)
+        localStorage.setItem('storageStart', row.start)
+        localStorage.setItem('storageDue', row.due)
       }
     }
   }

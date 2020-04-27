@@ -127,6 +127,11 @@
         propsToSearch: ['name', 'position'],
         tableColumns: [
           {
+            prop: 'id',
+            label: 'Id',
+            minWidth: 30
+          },
+          {
             prop: 'name',
             label: 'Name',
             minWidth: 200

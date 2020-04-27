@@ -19,6 +19,7 @@ import TaskForms from 'src/components/Dashboard/Views/Forms/TaskForms.vue'
 import SalaryTables from 'src/components/Dashboard/Views/Tables/SalaryTables.vue'
 import JobManageTables from 'src/components/Dashboard/Views/Tables/JobManageTables.vue'
 import InfoTables from 'src/components/Dashboard/Views/Tables/InfoTables.vue'
+import TaskTables from 'src/components/Dashboard/Views/Tables/TaskTables.vue'
 
 // Calendar
 import Calendar from 'src/components/Dashboard/Views/Calendar/CalendarRoute.vue'
@@ -55,6 +56,11 @@ let tablesMenu = {
       path: 'info',
       name: 'Employee Information',
       component: InfoTables
+    },
+    {
+      path: 'task',
+      name: 'Task Tables',
+      component: TaskTables
     }]
 }
 

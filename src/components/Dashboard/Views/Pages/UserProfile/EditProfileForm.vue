@@ -9,7 +9,6 @@
           <div class="col-md-12">
             <fg-input type="text"
                       label= "Name"
-                      :disabled="true"
                       placeholder="Name"
                       v-model="user.name">
             </fg-input>
@@ -17,18 +16,9 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
-            <fg-input type="text"
-                      label="Nickname"
-                      :disabled="true"
-                      placeholder="Nickname"
-                      v-model="user.nickname">
-            </fg-input>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
             <fg-input type="text"
                       label="Email"
-                      :disabled="true"
                       placeholder="Email"
                       v-model="user.email">
             </fg-input>
@@ -64,8 +54,34 @@
             </div>
           </div>
         </div>
+
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <fg-input type="text"
+                      label="Department"
+                      placeholder="Department"
+                      v-model="user.department">
+            </fg-input>
+          </div>
+        </div> -->
+
+        <div class="row">
+          <label style="margin-left:15px">Department</label>
+          <el-select v-model="value" 
+          multiple placeholder="Department" 
+          size="large"
+          class="col-md-12">
+            <el-option
+              v-for="item in departments"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+
         <div class="text-center">
-          <button type="submit" class="btn btn-info btn-fill btn-wd" @click.prevent="updateProfile">
+          <button type="submit" class="btn btn-fill btn-wd" @click.prevent="updateProfile" style="margin-top:15px">
             Update Profile
           </button>
         </div>
@@ -80,12 +96,23 @@
       return {
         user: {
           name: localStorage.getItem('storageName'),
-          nickname: localStorage.getItem('storageNickname'),
+          department: localStorage.getItem('storageDepartment'),
           email: localStorage.getItem('storageEmail'),
           salary: localStorage.getItem('storageSalary'),
           position: localStorage.getItem('storagePosition'),
           comment: ``
-        }
+        },
+        departments: [{
+          value: 'marketing',
+          label: 'marketing'
+        }, {
+          value: 'finance',
+          label: 'finance'
+        }, {
+          value: 'editorial',
+          label: 'editorial'
+        }],
+        value: ''
       }
     },
     methods: {
@@ -97,5 +124,29 @@
 
 </script>
 <style>
+  .el-select__tags-text{
+    color: white
+  }
 
+  .el-input__inner{
+    background-color: #F3F2EE;
+    border: 1px solid #e8e7e3;
+    border-radius: 4px;
+    color: #66615b;
+    font-size: 14px;
+    padding: 7px 18px;
+    height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    height: 40px;
+  }
+
+  .el-tag, .el-tag.el-tag--info {
+      background-color: #66615B !important;
+      color: white;
+  }
+
+  .el-tag.el-tag--info .el-tag__close {
+    color: white;
+  }
 </style>
