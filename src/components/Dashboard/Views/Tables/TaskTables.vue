@@ -1,26 +1,39 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card col-sm-8 col-md-offset-2">
       <div class="card-header">
-        <h3 class="card-title">{{ projectInfo.project }}</h3>
-        <p>{{ projectInfo.description }}</p>
-        <p class="category"><i class="el-icon-time"></i> Peoject due: {{ projectInfo.due }}</p>
+        <h4 class="card-title">{{ projectInfo.project }}</h4>
+        <!-- <p>{{ projectInfo.description }}</p> -->
+        <p class="category">{{ projectInfo.description }} </p>
       </div>
       <div class="card-content row">
         <div class="col-sm-12">
           <el-table :data="taskInfo">
+            <el-table-column type="expand">
+              <template slot-scope="props">
+                <p class="category" >{{ props.row.task }}</p>
+              </template>
+            </el-table-column>
             <el-table-column type="index" width="60">
-
             </el-table-column>
             <el-table-column prop="employee"
-                             label="Employee">
+                             label="Employee"
+                             width="300">
             </el-table-column>
-            <el-table-column prop="task"
-                  label="Task">
+            <el-table-column
+              :min-width="120"
+              fixed="right"
+              label="Edit">
+              <template slot-scope="props">
+                <router-link to="/table-list/taskedit">
+                  <a class="btn btn-simple btn-xs btn-warning btn-icon edit" @click="handleEdit(props.$index, props.row)"><i class="ti-pencil-alt"></i></a>
+                </router-link>
+              </template>
             </el-table-column>
           </el-table>
         </div>
       </div>
+      <p class="category" style="text-align:right;"><i class="el-icon-time"></i> Peoject due: {{ projectInfo.due }}<br><br></p>
     </div>
   </div>
 </template>
@@ -45,10 +58,10 @@
         },
         taskInfo: [{
           employee: 'Employee A',
-          task: 'Task for employee A'
+          task: ['Task1 for employee A1', 'Task2 for employee A1', 'Task3 for employee A1']
         }, {
           employee: 'Employee B',
-          task: 'Task for employee B'
+          task: ['Task1 for employee A2', 'Task2 for employee A2']
         }, {
           employee: 'Employee C',
           task: 'Task for employee C'
@@ -61,6 +74,13 @@
           task: 'Task for employee D'
         }
         ]
+      }
+    },
+    methods: {
+      handleEdit (index, row) {
+        alert(`Your want to edit ${row.employee}'s task in this project`)
+        localStorage.setItem('storageEmployee', row.employee)
+        localStorage.setItem('storageTask', row.task)
       }
     }
   }

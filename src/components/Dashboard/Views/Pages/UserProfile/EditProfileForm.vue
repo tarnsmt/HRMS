@@ -42,19 +42,6 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Comment</label>
-              <textarea rows="5" class="form-control border-input"
-                        placeholder="Comment on the employee"
-                        v-model="user.comment">
-
-              </textarea>
-            </div>
-          </div>
-        </div>
-
         <!-- <div class="row">
           <div class="col-md-12">
             <fg-input type="text"
@@ -99,8 +86,7 @@
           department: localStorage.getItem('storageDepartment'),
           email: localStorage.getItem('storageEmail'),
           salary: localStorage.getItem('storageSalary'),
-          position: localStorage.getItem('storagePosition'),
-          comment: ``
+          position: localStorage.getItem('storagePosition')
         },
         departments: [{
           value: 'marketing',
@@ -117,7 +103,7 @@
     },
     methods: {
       updateProfile () {
-        alert('Your data: ' + JSON.stringify(this.user))
+        alert('Update: ' + JSON.stringify(this.user))
       }
     }
   }

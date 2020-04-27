@@ -94,10 +94,8 @@
     },
     methods: {
       handleInputConfirm (index, row) {
-        alert(`You want to edit ${row.project} ?`)
         localStorage.setItem('storageProject', row.project)
         localStorage.setItem('storageDescription', row.description)
-        localStorage.setItem('storageTeam', row.team)
         localStorage.setItem('storageStart', row.start)
         localStorage.setItem('storageDue', row.due)
       }

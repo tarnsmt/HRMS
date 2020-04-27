@@ -9,11 +9,14 @@ import User from 'src/components/Dashboard/Views/Dashboard/User.vue'
 
 // Pages
 import UserEdit from 'src/components/Dashboard/Views/Pages/UserEdit.vue'
+import EachTaskEdit from 'src/components/Dashboard/Views/Pages/EachTaskEdit.vue'
 import Login from 'src/components/Dashboard/Views/Pages/Login.vue'
 import Register from 'src/components/Dashboard/Views/Pages/Register.vue'
 
 // Forms pages
 import TaskForms from 'src/components/Dashboard/Views/Forms/TaskForms.vue'
+import EditTaskForms from 'src/components/Dashboard/Views/Forms/EditTaskForms.vue'
+
 
 // TableList pages
 import SalaryTables from 'src/components/Dashboard/Views/Tables/SalaryTables.vue'
@@ -33,6 +36,20 @@ let formsMenu = {
       path: 'task',
       name: 'Task Forms',
       component: TaskForms
+    }
+  ]
+}
+
+
+let taskMenu = {
+  path: '/table-list',
+  component: DashboardLayout,
+  redirect: '/table-list/taskedit',
+  children: [
+    {
+      path: 'taskedit',
+      name: 'Task Edit Forms',
+      component: EditTaskForms
     }
   ]
 }
@@ -73,6 +90,11 @@ let pagesMenu = {
       path: 'useredit',
       name: 'Edit Employee Information',
       component: UserEdit
+    },
+    {
+      path: 'eachtaskedit',
+      name: 'Edit task of the project',
+      component: EachTaskEdit
     }
   ]
 }
@@ -105,6 +127,7 @@ const routes = [
   formsMenu,
   tablesMenu,
   pagesMenu,
+  taskMenu,
   loginPage,
   registerPage,
   {

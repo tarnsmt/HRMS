@@ -1,20 +1,18 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">Tasks</h4>
+      <h4 class="card-project">Tasks</h4>
       <p class="category">Lists of tasks for projects</p>
     </div>
     <div class="card-content">
       <div class="table-full-width table-tasks">
         <table class="table">
           <tbody>
-          <task v-for="(task, index) in tasks"
-                :key="task.title"
+          <task v-for="(task, index) in tableData"
+                :key="task.project"
                 :task="task"
                 :index="index"
-                @on-edit="handleTaskEdit"
-                @on-delete="handleTaskDelete">
-
+                @on-edit="handleTaskEdit">
           </task>
           </tbody>
         </table>
@@ -37,24 +35,18 @@
     },
     data () {
       return {
-        tasks: [
+        tableData: [
           {
-            title: 'Lorem ipsum'
+            project: 'Project A'
           },
           {
-            title: 'Lorem ipsum'
+            project: 'Project B'
           },
           {
-            title: 'Lorem ipsum'
+            project: 'Project C'
           },
           {
-            title: 'Lorem ipsum'
-          },
-          {
-            title: 'Lorem ipsum'
-          },
-          {
-            title: 'Lorem ipsum'
+            project: 'Project D'
           }
         ]
       }
@@ -62,9 +54,6 @@
     methods: {
       handleTaskEdit (index) {
         alert(`You want to edit task: ${JSON.stringify(this.tasks[index])}`)
-      },
-      handleTaskDelete (index) {
-        alert(`You want to delete task: ${JSON.stringify(this.tasks[index])}`)
       }
     }
   }
