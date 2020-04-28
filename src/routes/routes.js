@@ -42,14 +42,20 @@ let formsMenu = {
 
 
 let taskMenu = {
-  path: '/table-list',
+  path: '/jobManagement',
   component: DashboardLayout,
-  redirect: '/table-list/taskedit',
   children: [
     {
-      path: 'taskedit',
+      path: 'project/:projectId/employee/:employeeId',
       name: 'Task Edit Forms',
-      component: EditTaskForms
+      component: EditTaskForms,
+      props: true
+    },
+    {
+      path: 'project/:projectId',
+      name: 'Task Tables',
+      component: TaskTables,
+      props: true
     }
   ]
 }
@@ -67,18 +73,14 @@ let tablesMenu = {
     {
       path: 'jobManagement',
       name: 'Job Management',
-      component: JobManageTables
+      component: JobManageTables,
     },
     {
       path: 'info',
       name: 'Employee Information',
       component: InfoTables
     },
-    {
-      path: 'task',
-      name: 'Task Tables',
-      component: TaskTables
-    }]
+  ]
 }
 
 let pagesMenu = {
@@ -147,7 +149,7 @@ const routes = [
       }
     ]
   },
-  {path: '*', component: NotFound}
+  { path: '*', component: NotFound }
 ]
 
 /**

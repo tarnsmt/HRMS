@@ -8,27 +8,18 @@
       <div class="card-content row">
         <div class="col-sm-12">
           <el-table :data="tableData">
-            <el-table-column type="index">
-
-            </el-table-column>
-            <el-table-column prop="project"
-                             label="Project">
-            </el-table-column>
-            <el-table-column prop="description"
-                  label="Description"
-                  width="305">
-            </el-table-column>
-            <el-table-column prop="start"
-                  label="Start">
-            </el-table-column>
-            <el-table-column prop="due"
-                  label="End">
-            </el-table-column>
-            <el-table-column
-              label="More info">
+            <el-table-column type="index"></el-table-column>
+            <el-table-column prop="project" label="Project"></el-table-column>
+            <el-table-column prop="description" label="Description" width="305"></el-table-column>
+            <el-table-column prop="start" label="Start"></el-table-column>
+            <el-table-column prop="due" label="End"></el-table-column>
+            <el-table-column label="More info">
               <template slot-scope="props">
-                <router-link to="/table-list/task">
-                  <a class="btn btn-simple btn-warning btn-xs btn-icon edit" @click="handleInputConfirm(props.$index, props.row)">
+                <router-link :to="`/jobManagement/project/${projectId}`">
+                  <a
+                    class="btn btn-simple btn-warning btn-xs btn-icon edit"
+                    @click="handleInputConfirm(props.$index, props.row)"
+                  >
                     <i class="ti-clipboard"></i>
                   </a>
                 </router-link>
@@ -46,61 +37,82 @@
   </div>
 </template>
 <script>
-  import Vue from 'vue'
-  import {Table, TableColumn} from 'element-ui'
-  import PSwitch from 'src/components/UIComponents/Switch.vue'
-  Vue.use(Table)
-  Vue.use(TableColumn)
-  export default{
-    components: {
-      PSwitch
-    },
-    data () {
-      return {
-        tableData: [{
-          project: 'Project A',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+import Vue from "vue";
+import { Table, TableColumn } from "element-ui";
+import PSwitch from "src/components/UIComponents/Switch.vue";
+import { jobManagementService } from "src/services/JobManagementService";
+Vue.use(Table);
+Vue.use(TableColumn);
+export default {
+  components: {
+    PSwitch
+  },
+  data() {
+    return {
+      tableData: [
+        {
+          project: "Project A",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
           active: true,
-          start: '9/1/2563',
-          due: '9/2/2563'
-        }, {
-          project: 'Project B',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
-          active: false,
-          start: '9/1/2563',
-          due: '9/2/2563'
-        }, {
-          project: 'Project C',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
-          active: false,
-          start: '9/1/2563',
-          due: '9/2/2563'
-        }, {
-          project: 'Project D',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
-          active: true,
-          start: '9/1/2563',
-          due: '9/2/2563'
+          start: "9/1/2563",
+          due: "9/2/2563"
         },
         {
-          project: 'Project E',
-          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum',
+          project: "Project B",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
           active: false,
-          start: '9/1/2563',
-          due: '9/2/2563'
+          start: "9/1/2563",
+          due: "9/2/2563"
+        },
+        {
+          project: "Project C",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+          active: false,
+          start: "9/1/2563",
+          due: "9/2/2563"
+        },
+        {
+          project: "Project D",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+          active: true,
+          start: "9/1/2563",
+          due: "9/2/2563"
+        },
+        {
+          project: "Project E",
+          description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+          active: false,
+          start: "9/1/2563",
+          due: "9/2/2563"
         }
-        ]
-      }
+      ],
+      projectId: String
+    };
+  },
+  methods: {
+    handleInputConfirm(index, row) {
+      this.projectId = row.id;
+      localStorage.setItem("storageProject", row.project);
+      localStorage.setItem("storageDescription", row.description);
+      localStorage.setItem("storageStart", row.start);
+      localStorage.setItem("storageDue", row.due);
     },
-    methods: {
-      handleInputConfirm (index, row) {
-        localStorage.setItem('storageProject', row.project)
-        localStorage.setItem('storageDescription', row.description)
-        localStorage.setItem('storageStart', row.start)
-        localStorage.setItem('storageDue', row.due)
-      }
+
+    getAllProjects: function() {
+      jobManagementService.getAllProjects().then(result => {
+        this.tableData = result;
+      });
     }
+  },
+  mounted: function() {
+    this.getAllProjects();
   }
+};
 </script>
 <style>
 </style>
