@@ -1,22 +1,79 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 col-md-7 col-md-offset-2">
-      <edit-profile-form>
-
-      </edit-profile-form>
+  <div class= "card col-sm-8 col-md-offset-2">
+    <div class="card-header">
+      <h4 class="title">Edit Task</h4>
+    </div>
+    <div class="card-content">
+      <form>
+        <div class="row">
+          <div class="col-md-12">
+            <fg-input type="text"
+                      label= "Task title"
+                      placeholder="Task title"
+                      v-model="task.taskDescription">
+            </fg-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <fg-input type="text"
+                      label= "Task description"
+                      placeholder="Task description"
+                      v-model="task.taskDescription">
+            </fg-input>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-fill btn-wd" @click.prevent="updateTask" style="margin-top:15px">
+            Update Task
+          </button>
+        </div>
+        <div class="clearfix"></div>
+      </form>
     </div>
   </div>
 </template>
 <script>
-  import EditEachTaskForm from './UserProfile/EditEachTaskForm.vue'
-
   export default {
-    components: {
-      EditEachTaskForm
+    data () {
+      return {
+        task: {
+          taskDescription: localStorage.getItem('storageTaskDescription')
+        }
+      }
+    },
+    methods: {
+      updateTask () {
+        alert('Update: ' + JSON.stringify(this.user))
+      }
     }
   }
 
 </script>
 <style>
+  .el-select__tags-text{
+    color: white
+  }
 
+  .el-input__inner{
+    background-color: #F3F2EE;
+    border: 1px solid #e8e7e3;
+    border-radius: 4px;
+    color: #66615b;
+    font-size: 14px;
+    padding: 7px 18px;
+    height: 40px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    height: 40px;
+  }
+
+  .el-tag, .el-tag.el-tag--info {
+      background-color: #66615B !important;
+      color: white;
+  }
+
+  .el-tag.el-tag--info .el-tag__close {
+    color: white;
+  }
 </style>

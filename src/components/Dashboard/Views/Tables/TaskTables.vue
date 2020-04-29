@@ -23,6 +23,7 @@
           @keyup.enter="handleInputConfirm"
           @blur="handleInputConfirm"
         />
+        <el-button class="button-new-tag" size="small" @click="addCollaborator">Add</el-button>
         <hr>
         <h4 class="card-title">{{ projectInfo.project }}</h4>
         <!-- <p>{{ projectInfo.description }}</p> -->
@@ -141,6 +142,8 @@ export default {
           this.tags.dynamicTags.push(element.employee)
       });
     },
+
+    
     // tag function
     handleClose(tag) {
       this.tags.dynamicTags.splice(this.tags.dynamicTags.indexOf(tag), 1);
