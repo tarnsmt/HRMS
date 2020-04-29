@@ -10,9 +10,8 @@
           type="primary"
           :closable="true"
           :disable-transitions="false"
-          @close="handleClose(tag)">
-          {{tag}}
-        </el-tag>
+          @close="handleClose(tag)"
+        >{{tag}}</el-tag>
         <input
           type="text"
           placeholder="Add collaborator"
@@ -23,11 +22,11 @@
           @keyup.enter="handleInputConfirm"
           @blur="handleInputConfirm"
         />
-        <el-button class="button-new-tag" size="small" @click="addCollaborator">Add</el-button>
-        <hr>
+        <el-button class="button-new-tag" size="small" @click="updateProject">save</el-button>
+        <hr />
         <h4 class="card-title">{{ projectInfo.project }}</h4>
         <!-- <p>{{ projectInfo.description }}</p> -->
-        <p class="category">{{ projectInfo.description }} </p>
+        <p class="category">{{ projectInfo.description }}</p>
       </div>
 
       <div class="card-content row">
@@ -133,17 +132,32 @@ export default {
       alert(`Your want to edit ${row.employee}'s task in this project`);
       localStorage.setItem("storageEmployee", row.employee);
       localStorage.setItem("storageTask", row.task);
-      this.employeeId = row.employee
+      this.employeeId = row.employee;
     },
     getProject() {
       jobManagementService.getProjectById(this.projectId).then(result => {
         this.taskInfo = result;
-        for(let element of result)
-          this.tags.dynamicTags.push(element.employee)
+        for (let element of result)
+          this.tags.dynamicTags.push(element.employee);
       });
     },
-
-    
+    updateProject(){
+      let payload = {
+        projectID: this.projectId,
+        Due_date: this.projectInfo.due,
+        Members:  this.tags.dynamicTags
+      }
+      jobManagementService.updateProject(this.projectId,payload).then(
+        result => {
+          this.taskInfo = []
+          for(let member of result.project.Members){
+            if(member.Role != 'inactive')
+                this.taskInfo.push({employee: member.Employee_ID})
+          }
+          
+        }
+      )
+    },
     // tag function
     handleClose(tag) {
       this.tags.dynamicTags.splice(this.tags.dynamicTags.indexOf(tag), 1);
@@ -161,16 +175,15 @@ export default {
         this.tags.dynamicTags.push(inputValue);
       }
       this.tags.inputVisible = false;
-      this.tags.inputValue = '';
+      this.tags.inputValue = "";
     }
   },
 
   mounted: function() {
-    this.current_path = this.$route.path
+    this.current_path = this.$route.path;
     this.getProject();
   }
 };
 </script>
 <style>
-
 </style>

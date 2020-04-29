@@ -70,7 +70,8 @@ export default {
   },
   methods: {
     handleEdit(index, row) {
-      localStorage.setItem("storageTaskDescription", row.taskTopic);
+      localStorage.setItem("storageTaskTopic", row.Topic);
+      localStorage.setItem("storageTaskDescription", row.Note);
     },
     getTasks(employeeId) {
       jobManagementService. getTasksByEmployeeId(this.projectId,this.employeeId).then(

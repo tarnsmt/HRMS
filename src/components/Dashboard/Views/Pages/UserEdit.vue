@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-lg-8 col-md-7 col-md-offset-2">
-      <edit-profile-form>
+      <edit-profile-form :id="`${employeeId}`">
 
       </edit-profile-form>
     </div>
@@ -13,6 +13,11 @@
   export default {
     components: {
       EditProfileForm
+    },
+    props:{
+      employeeId:{
+        type: String
+      }
     }
   }
 

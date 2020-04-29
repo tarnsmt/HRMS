@@ -10,7 +10,7 @@
             <fg-input type="text"
                       label= "Task title"
                       placeholder="Task title"
-                      v-model="task.taskDescription">
+                      v-model="task.taskTopic">
             </fg-input>
           </div>
         </div>
@@ -23,30 +23,23 @@
             </fg-input>
           </div>
         </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-fill btn-wd" @click.prevent="updateTask" style="margin-top:15px">
-            Update Task
-          </button>
-        </div>
         <div class="clearfix"></div>
       </form>
     </div>
   </div>
 </template>
 <script>
+  import { jobManagementService } from "src/services/JobManagementService"
+
   export default {
     data () {
       return {
         task: {
+          taskTopic: localStorage.getItem("storageTaskTopic"),
           taskDescription: localStorage.getItem('storageTaskDescription')
         }
       }
     },
-    methods: {
-      updateTask () {
-        alert('Update: ' + JSON.stringify(this.user))
-      }
-    }
   }
 
 </script>

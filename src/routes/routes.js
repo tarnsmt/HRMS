@@ -89,9 +89,10 @@ let pagesMenu = {
   redirect: '/pages/useredit',
   children: [
     {
-      path: 'useredit',
+      path: 'useredit/:employeeId',
       name: 'Edit Employee Information',
-      component: UserEdit
+      component: UserEdit,
+      props: true
     },
     {
       path: 'eachtaskedit',

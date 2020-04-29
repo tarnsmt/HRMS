@@ -40,10 +40,10 @@ class JobManagementService {
                 let taskInfo = []
                 let employeeList = response.data.Members
                 for (let employee of employeeList) {
-                    console.log(employee)
-                    taskInfo.push({
-                        employee: employee.Employee_ID
-                    })
+                    if (employee.Role != "inactive")
+                        taskInfo.push({
+                            employee: employee.Employee_ID
+                        })
                 }
                 return taskInfo
             }
@@ -70,18 +70,36 @@ class JobManagementService {
         )
     }
 
+    updateProject(projectId, payload) {
+        let members = []
+        for (let employee of payload.Members) {
+            members.push(employee)
+        }
+        let url = this.base_Url + "projects/" + projectId + "?role=admin"
+        return axios.put(url, payload).then(
+            response => {
+                return response.data
+            }
+        ).catch(error => {
+            console.log(error)
+        })
+    }
+
     getTasksByEmployeeId(projectId, employeeId) {
         let url = this.base_Url + "employee/" + employeeId + "/projects/" + projectId + "?role=admin"
         return axios.get(url).then(
             response => {
                 let tasks = []
-                for(let task of response.data)
+                for (let task of response.data)
                     tasks.push(task)
                 return tasks
             }
         )
     }
 
+    updateEachTask(projectId, employeeId, taskId) {
+        let url = this.base_Url + "employee/" + employeeId + "/projects/" + projectId + "?role=admin"
+    }
 
 
     formatDate(date) {
