@@ -93,7 +93,7 @@ export default {
         description: localStorage.getItem("storageDescription")
       },
       tags: {
-        dynamicTags: ["Admin"],
+        dynamicTags: [],
         inputVisible: false,
         inputValue: ""
       },
@@ -137,6 +137,8 @@ export default {
     getProject() {
       jobManagementService.getProjectById(this.projectId).then(result => {
         this.taskInfo = result;
+        for(let element of result)
+          this.tags.dynamicTags.push(element.employee)
       });
     },
     // tag function
