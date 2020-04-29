@@ -34,11 +34,16 @@
             </fg-input>
           </div>
           <div class="col-md-6">
-            <fg-input type="text"
-                      label="Position"
-                      placeholder="Position"
-                      v-model="user.position">
-            </fg-input>
+            <label>Department</label>
+            <br>
+            <el-select v-model="valueDepartment" placeholder="Select">
+              <el-option
+                v-for="item in department"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
           </div>
         </div>
 
@@ -53,13 +58,13 @@
         </div> -->
 
         <div class="row">
-          <label style="margin-left:15px">Department</label>
-          <el-select v-model="value" 
-          multiple placeholder="Department" 
+          <label style="margin-left:15px">Position</label>
+          <el-select v-model="valuePosition" 
+          multiple placeholder="Position" 
           size="large"
           class="col-md-12">
             <el-option
-              v-for="item in departments"
+              v-for="item in position"
               :key="item.value"
               :label="item.label"
               :value="item.value">
@@ -88,17 +93,25 @@
           salary: localStorage.getItem('storageSalary'),
           position: localStorage.getItem('storagePosition')
         },
-        departments: [{
+        position: [{
+          value: 'designer',
+          label: 'designer'
+        }, {
+          value: 'developer',
+          label: 'developer'
+        }, {
           value: 'marketing',
           label: 'marketing'
-        }, {
+        }],
+        department: [{
           value: 'finance',
           label: 'finance'
         }, {
-          value: 'editorial',
-          label: 'editorial'
+          value: 'marketing',
+          label: 'marketing'
         }],
-        value: ''
+        valuePosition: '',
+        valueDepartment: ''
       }
     },
     methods: {

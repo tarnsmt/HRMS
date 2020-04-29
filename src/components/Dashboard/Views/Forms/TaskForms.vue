@@ -6,34 +6,6 @@
           <legend>Create a project</legend>
         </div>
 
-        <div class="row">
-          <label
-            class="col-sm-2 control-label"
-            style="text-align:right; padding-right:0px; padding-top: 12px;"
-          >Collaborator</label>
-          <div class="col-md-10">
-            <el-tag
-              :key="tag"
-              v-for="tag in tags.dynamicTags"
-              type="primary"
-              :closable="true"
-              :close-transition="false"
-              @close="handleClose(tag)"
-            >{{tag}}</el-tag>
-
-            <input
-              type="text"
-              placeholder="Add collaborator"
-              class="form-control input-new-tag"
-              v-model="tags.inputValue"
-              ref="saveTagInput"
-              size="mini"
-              @keyup.enter="handleInputConfirm"
-              @blur="handleInputConfirm"
-            />
-          </div>
-        </div>
-
         <div class="card-content">
           <form  class="form-horizontal">
             <fieldset>
@@ -95,7 +67,6 @@ import {
   DatePicker,
   TimeSelect,
   Slider,
-  Tag,
   Input,
   Button,
   Select,
@@ -109,7 +80,6 @@ export default {
     [DatePicker.name]: DatePicker,
     [TimeSelect.name]: TimeSelect,
     [Slider.name]: Slider,
-    [Tag.name]: Tag,
     [Input.name]: Input,
     [Button.name]: Button,
     [Option.name]: Option,
@@ -129,33 +99,12 @@ export default {
         ],
         multiple: "ARS"
       },
-      tags: {
-        dynamicTags: ["Admin"],
-        inputVisible: false,
-        inputValue: ""
-      },
       pickerOptions1: {
         shortcuts: [
           {
             text: "Today",
             onClick(picker) {
               picker.$emit("pick", new Date());
-            }
-          },
-          {
-            text: "Yesterday",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit("pick", date);
-            }
-          },
-          {
-            text: "A week ago",
-            onClick(picker) {
-              const date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", date);
             }
           }
         ]
@@ -168,25 +117,6 @@ export default {
     };
   },
   methods: {
-    handleClose(tag) {
-      this.tags.dynamicTags.splice(this.tags.dynamicTags.indexOf(tag), 1);
-    },
-
-    showInput() {
-      this.tags.inputVisible = true;
-      this.$nextTick(() => {
-        this.$refs.saveTagInput.$refs.input.focus();
-      });
-    },
-
-    handleInputConfirm() {
-      let inputValue = this.tags.inputValue;
-      if (inputValue) {
-        this.tags.dynamicTags.push(inputValue);
-      }
-      this.tags.inputVisible = false;
-      this.tags.inputValue = "";
-    },
     createProject(){
       console.log("Creating....")
       let payload = {
