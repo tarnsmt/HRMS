@@ -122,7 +122,7 @@ export default {
       let payload = {
         Name: this.projectName,
         Due_date: this.dateTimePicker,
-        Members: this.tags.dynamicTags,
+        Members: [],
         Department: this.selects.simple
       }
       jobManagementService.createProject(payload).then(

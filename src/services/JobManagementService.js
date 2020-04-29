@@ -51,12 +51,6 @@ class JobManagementService {
     }
 
     createProject(payload) {
-        let members = []
-        for (let element of payload.Members) {
-            members.push(String(element).toLocaleLowerCase())
-        }
-        payload.Members = members
-
         let start_date = this.formatDate(new Date())
         payload.Start_date = start_date
 
