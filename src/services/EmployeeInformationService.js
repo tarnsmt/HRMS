@@ -46,7 +46,7 @@ class EmployeeInformationService {
         })
     }
 
-    craeteEmployeeById(payload){
+    createEmployee(payload){
         let url = this.base_Url + "?role=admin"
         return axios.post(url,payload).then(
             response => {
@@ -57,6 +57,8 @@ class EmployeeInformationService {
             console.log(error)
         })
     }
+
+
 }
 
 export const employeeInformationService = new EmployeeInformationService()

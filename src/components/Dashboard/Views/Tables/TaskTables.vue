@@ -136,18 +136,15 @@ export default {
     },
     updateProject(){
       let payload = {
-        projectID: this.projectId,
+        ID: this.projectId,
         Due_date: this.projectInfo.due,
         Members:  this.tags.dynamicTags
       }
       jobManagementService.updateProject(this.projectId,payload).then(
         result => {
           this.taskInfo = []
-          for(let member of result.project.Members){
-            if(member.Role != 'inactive')
-                this.taskInfo.push({employee: member.Employee_ID})
-          }
-          
+          this.tags.dynamicTags = []
+          this.getProject()
         }
       )
     },

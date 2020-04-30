@@ -4,7 +4,7 @@
       <h4 class="title">Edit Profile</h4>
     </div>
     <div class="card-content">
-      <form>
+      <form v-on:keydown.enter.prevent="preventSubmit">
         <div class="row">
           <div class="col-md-12">
             <fg-input type="text" label="Name" placeholder="Name" v-model="user.name"></fg-input>
@@ -58,10 +58,9 @@
             v-model="tags.inputValue"
             ref="saveTagInput"
             size="mini"
-            @keyup.enter="handleInputConfirm"
+            @keydown.enter.prevent="handleInputConfirm"
             @blur="handleInputConfirm"
           />
-          <el-button class="button-new-tag" size="small" @click="updateProject">save</el-button>
         </div>
 
         <div class="text-center">
@@ -104,6 +103,7 @@ export default {
     };
   },
   methods: {
+    preventSubmit() {},
     updateProfile() {
       alert("Update: " + JSON.stringify(this.user));
       this.updatetEmployee()
