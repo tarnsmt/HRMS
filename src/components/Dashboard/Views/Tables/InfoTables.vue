@@ -39,7 +39,12 @@
               :prop="column.prop"
               :label="column.label"
             ></el-table-column>
-            <el-table-column :min-width="120" fixed="right" label="Actions">
+            <el-table-column label="Status">
+              <template slot-scope="props">
+                <p-switch v-model="props.row.status" onText="active" value="1" width="130"></p-switch>
+              </template>
+            </el-table-column>
+            <el-table-column :min-width="100" fixed="right" label="Actions">
               <template slot-scope="props">
                 <router-link :to="`/pages/useredit/${employeeId}`">
                   <a
@@ -77,6 +82,7 @@
 <script>
 import Vue from "vue";
 import { Table, TableColumn, Select, Option } from "element-ui";
+import PSwitch from "src/components/UIComponents/Switch.vue";
 import PPagination from "src/components/UIComponents/Pagination.vue";
 import { employeeInformationService } from "src/services/EmployeeInformationService";
 import users from "./users";
@@ -87,12 +93,13 @@ Vue.use(Select);
 Vue.use(Option);
 export default {
   components: {
-    PPagination
+    PPagination, PSwitch
   },
   computed: {
     pagedData() {
       return this.tableData.slice(this.from, this.to);
     },
+    
     /***
      * Searches through table data and returns a paginated array.
      * Note that this should not be used for table with a lot of data as it might be slow!
@@ -144,31 +151,27 @@ export default {
       propsToSearch: ["name", "email"],
       tableColumns: [
         {
-          prop: "id",
+          prop: "employee_id",
           label: "Id",
-          minWidth: 50
+          minWidth: 120
         },
         {
           prop: "name",
           label: "Name",
-          minWidth: 200
+          minWidth: 140
         },
         {
-          prop: "department",
-          label: "Department",
-          minWidth: 100
+          prop: "address",
+          label: "Address",
+          minWidth: 130
         },
         {
-          prop: "age",
-          label: "Age",
-          minWidth: 50
-        },
-        {
-          prop: "email",
-          label: "Email",
-          minWidth: 250
+          prop: "tel",
+          label: "Tel",
+          minWidth: 130
         }
       ],
+      searchVal: Array,
       tableData: users,
       employeeId: String
     };

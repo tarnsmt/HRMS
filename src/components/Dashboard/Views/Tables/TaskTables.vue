@@ -32,14 +32,9 @@
       <div class="card-content row">
         <div class="col-sm-12">
           <el-table :data="taskInfo">
-            <el-table-column type="expand">
-              <template slot-scope="props">
-                <p class="category">{{ props.row.task }}</p>
-              </template>
-            </el-table-column>
-            <el-table-column type="index" width="60"></el-table-column>
-            <el-table-column prop="employee" label="Employee" width="300"></el-table-column>
-            <el-table-column :min-width="120" fixed="right" label="Edit">
+            <el-table-column type="index" align="center" width="200"></el-table-column>
+            <el-table-column prop="employee" label="Employee" ></el-table-column>
+            <el-table-column  fixed="right" label="Edit">
               <template slot-scope="props">
                 <router-link :to="`${current_path}/employee/${employeeId}`">
                   <a
@@ -66,14 +61,12 @@
 <script>
 import Vue from "vue";
 import { Table, TableColumn, Tag, Input, Button } from "element-ui";
-import PSwitch from "src/components/UIComponents/Switch.vue";
 import { jobManagementService } from "src/services/JobManagementService";
 
 Vue.use(Table);
 Vue.use(TableColumn);
 export default {
   components: {
-    PSwitch,
     [Tag.name]: Tag,
     [Input.name]: Input,
     [Button.name]: Button

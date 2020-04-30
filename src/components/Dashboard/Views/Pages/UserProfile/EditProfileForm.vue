@@ -12,8 +12,11 @@
         </div>
 
         <div class="row">
-          <div class="col-md-12">
-            <fg-input type="text" label="Email" placeholder="Email" v-model="user.email"></fg-input>
+          <div class="col-md-6">
+            <fg-input type="text" label="Address" placeholder="Address" v-model="user.address"></fg-input>
+          </div>
+          <div class="col-md-6">
+            <fg-input type="text" label="Tel" placeholder="Tel" v-model="user.tel"></fg-input>
           </div>
         </div>
 
@@ -36,32 +39,29 @@
           </div>
         </div>
 
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <fg-input type="text"
-                      label="Department"
-                      placeholder="Department"
-                      v-model="user.department">
-            </fg-input>
-          </div>
-        </div>-->
-
         <div class="row">
           <label style="margin-left:15px">Position</label>
-          <el-select
-            v-model="valuePosition"
-            multiple
-            placeholder="Position"
-            size="large"
-            class="col-md-12"
-          >
-            <el-option
-              v-for="item in position"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
+          <br>
+          <el-tag
+            :key="tag"
+            v-for="tag in tags.dynamicTags"
+            type="primary"
+            :closable="true"
+            :disable-transitions="false"
+            @close="handleClose(tag)"
+          >{{tag}}</el-tag>
+          <input
+            type="text"
+            style="margin-left:15px"
+            placeholder="Add position"
+            class="form-control input-new-tag"
+            v-model="tags.inputValue"
+            ref="saveTagInput"
+            size="mini"
+            @keyup.enter="handleInputConfirm"
+            @blur="handleInputConfirm"
+          />
+          <el-button class="button-new-tag" size="small" @click="updateProject">save</el-button>
         </div>
 
         <div class="text-center">
@@ -79,8 +79,14 @@
 </template>
 <script>
 import { employeeInformationService } from "src/services/EmployeeInformationService";
+import { Tag, Input, Button } from "element-ui";
 
 export default {
+  components: {
+    [Tag.name]: Tag,
+    [Input.name]: Input,
+    [Button.name]: Button
+  },
   props: {
     id: {
       type: String
@@ -89,38 +95,12 @@ export default {
   data() {
     return {
       user: {
-        name: localStorage.getItem("storageName"),
-        department: localStorage.getItem("storageDepartment"),
-        email: localStorage.getItem("storageEmail"),
-        salary: localStorage.getItem("storageSalary"),
-        position: localStorage.getItem("storagePosition")
       },
-      position: [
-        {
-          value: "designer",
-          label: "designer"
-        },
-        {
-          value: "developer",
-          label: "developer"
-        },
-        {
-          value: "marketing",
-          label: "marketing"
-        }
-      ],
-      department: [
-        {
-          value: "finance",
-          label: "finance"
-        },
-        {
-          value: "marketing",
-          label: "marketing"
-        }
-      ],
-      valuePosition: "",
-      valueDepartment: ""
+    tags: {
+        dynamicTags: [],
+        inputVisible: false,
+        inputValue: ""
+      }
     };
   },
   methods: {
@@ -168,6 +148,25 @@ export default {
       employeeInformationService.updateEmployeeById(this.id,payload).then(result => {
         this.user = result;
       });
+    },
+    // tag function
+    handleClose(tag) {
+      this.tags.dynamicTags.splice(this.tags.dynamicTags.indexOf(tag), 1);
+    },
+    showInput() {
+      this.tags.inputVisible = true;
+      this.$nextTick(() => {
+        this.$refs.saveTagInput.$refs.input.focus();
+      });
+    },
+
+    handleInputConfirm() {
+      let inputValue = this.tags.inputValue;
+      if (inputValue) {
+        this.tags.dynamicTags.push(inputValue);
+      }
+      this.tags.inputVisible = false;
+      this.tags.inputValue = "";
     }
   },
   mounted() {
@@ -176,30 +175,4 @@ export default {
 };
 </script>
 <style>
-.el-select__tags-text {
-  color: white;
-}
-
-.el-input__inner {
-  background-color: #f3f2ee;
-  border: 1px solid #e8e7e3;
-  border-radius: 4px;
-  color: #66615b;
-  font-size: 14px;
-  padding: 7px 18px;
-  height: 40px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  height: 40px;
-}
-
-.el-tag,
-.el-tag.el-tag--info {
-  background-color: #66615b !important;
-  color: white;
-}
-
-.el-tag.el-tag--info .el-tag__close {
-  color: white;
-}
 </style>

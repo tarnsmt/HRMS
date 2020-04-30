@@ -126,14 +126,14 @@ export default {
       propsToSearch: ["name", "position"],
       tableColumns: [
         {
-          prop: "id",
+          prop: "employee_id",
           label: "Id",
-          minWidth: 30
+          minWidth: 120
         },
         {
           prop: "name",
           label: "Name",
-          minWidth: 200
+          minWidth: 140
         },
         {
           prop: "position",
@@ -141,8 +141,13 @@ export default {
           minWidth: 120
         },
         {
-          prop: "salary",
+          prop: "base_salary",
           label: "Salary",
+          minWidth: 100
+        },
+        {
+          prop: "bank_account",
+          label: "Account",
           minWidth: 100
         }
       ],
