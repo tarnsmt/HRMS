@@ -27,9 +27,9 @@
         </form>
         <el-button class="button-new-tag" size="small" @click="updateAddTask">Add task</el-button>
         <hr />
-        <h4 class="card-title">{{ projectInfo.employee }}'s task in {{ projectInfo.project }}</h4>
+        <h4 class="card-title">Project name</h4>
         <!-- <p>{{ projectInfo.description }}</p> -->
-        <p class="category">{{ projectInfo.description }}</p>
+        <p class="category">บะลั่กบะลั่ก</p>
       </div>
 
       <div class="card-content row">

@@ -18,6 +18,7 @@
           </el-select>
         </div>
         <div class="col-sm-6">
+          <!-- search filter for employee info -->
           <div class="pull-right">
             <label>
               <input
@@ -28,6 +29,18 @@
                 aria-controls="datatables"
               />
             </label>
+          </div>
+          <!-- add employee button -->
+          <div class="pull-right">
+            <router-link :to="`/pages/useradd`">
+            <el-button 
+              style="margin-right:10px"
+              class="button-new-tag" 
+              size="large" 
+              @click="updateAddEmployee">
+              Add employee
+            </el-button>
+            </router-link>
           </div>
         </div>
         <div class="col-sm-12">
@@ -81,7 +94,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { Table, TableColumn, Select, Option } from "element-ui";
+import { Table, TableColumn, Select, Option, Button } from "element-ui";
 import PSwitch from "src/components/UIComponents/Switch.vue";
 import PPagination from "src/components/UIComponents/Pagination.vue";
 import { employeeInformationService } from "src/services/EmployeeInformationService";
@@ -93,7 +106,7 @@ Vue.use(Select);
 Vue.use(Option);
 export default {
   components: {
-    PPagination, PSwitch
+    PPagination, PSwitch, [Button.name]: Button
   },
   computed: {
     pagedData() {

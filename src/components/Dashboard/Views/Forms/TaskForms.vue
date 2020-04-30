@@ -99,7 +99,7 @@ export default {
         ],
         multiple: "ARS"
       },
-      pickerOptions1: {
+      pickerToday: {
         shortcuts: [
           {
             text: "Today",

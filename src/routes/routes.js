@@ -8,6 +8,7 @@ import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import User from 'src/components/Dashboard/Views/Dashboard/User.vue'
 
 // Pages
+import UserAdd from 'src/components/Dashboard/Views/Pages/UserAdd.vue'
 import UserEdit from 'src/components/Dashboard/Views/Pages/UserEdit.vue'
 import EachTaskEdit from 'src/components/Dashboard/Views/Pages/EachTaskEdit.vue'
 import Login from 'src/components/Dashboard/Views/Pages/Login.vue'
@@ -16,7 +17,7 @@ import Register from 'src/components/Dashboard/Views/Pages/Register.vue'
 // Forms pages
 import TaskForms from 'src/components/Dashboard/Views/Forms/TaskForms.vue'
 import EditTaskForms from 'src/components/Dashboard/Views/Forms/EditTaskForms.vue'
-
+import EmployeeEditTask from 'src/components/Dashboard/Views/Forms/EmployeeEditTask.vue'
 
 // TableList pages
 import SalaryTables from 'src/components/Dashboard/Views/Tables/SalaryTables.vue'
@@ -49,6 +50,12 @@ let taskMenu = {
       path: 'project/:projectId/employee/:employeeId',
       name: 'Task Edit Forms',
       component: EditTaskForms,
+      props: true
+    },
+    {
+      path: 'project/employeeEditTask',
+      name: 'Task Edit Forms For Employee',
+      component: EmployeeEditTask,
       props: true
     },
     {
@@ -93,6 +100,11 @@ let pagesMenu = {
       name: 'Edit Employee Information',
       component: UserEdit,
       props: true
+    },
+    {
+      path: 'useradd',
+      name: 'Add Employee Information',
+      component: UserAdd,
     },
     {
       path: 'eachtaskedit',

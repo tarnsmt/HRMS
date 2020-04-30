@@ -8,7 +8,7 @@
     <td>{{task.project}}</td>
     <td class="td-actions text-right">
       <div class="table-icons">
-        <router-link to="/table-list/task">
+        <router-link to="/jobManagement/project/employeeEditTask">
           <button type="button"
                   rel="tooltip"
                   title="Edit Task"
