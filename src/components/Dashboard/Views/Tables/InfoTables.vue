@@ -32,18 +32,10 @@
                 aria-controls="datatables"
               />
             </label>
-            <router-link :to="`/table-list/salary`">
-            <el-button 
-              class="button-new-tag" 
-              size="large">
-              Salary Employee
-            </el-button>
-            </router-link>
             <router-link :to="`/pages/useradd`">
             <el-button 
               class="button-new-tag" 
-              size="large" 
-              @click="updateAddEmployee">
+              size="large" >
               Add 
             </el-button>
             </router-link>

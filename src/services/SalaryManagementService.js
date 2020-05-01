@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 axios.defaults.headers.common = { 'Authorization': 'bearer ' + process.env.jwtToken }
 
 class SalaryManagementService {
@@ -21,8 +22,22 @@ class SalaryManagementService {
         )
     }
 
-    getPayroll(employee_id) {
+    getPayrollById(employee_id) {
         let url = this.base_Url + "/payroll/" + employee_id + "?role=admin"
+        return axios.get(url).then(
+            response => {
+                return response.data
+            }
+        )
+    }
+
+    getPaymentById(employee_id){
+        let url = this.base_Url + "/payroll/" + employee_id + "/payment?role=admin"
+        return axios.get(url).then(
+            response => {
+                return response.data
+            }
+        )
     }
 
 

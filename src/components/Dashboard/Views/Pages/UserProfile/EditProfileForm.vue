@@ -2,6 +2,9 @@
   <div class="card">
     <div class="card-header">
       <h4 class="title">Edit Profile</h4>
+      <router-link :to="`/salaryManagement/${this.id}`">
+        <el-button class="button-new-tag" size="large">Salary Employee</el-button>
+      </router-link>
     </div>
     <div class="card-content">
       <form v-on:keydown.enter.prevent="preventSubmit">
@@ -41,7 +44,7 @@
 
         <div class="row">
           <label style="margin-left:15px">Position</label>
-          <br>
+          <br />
           <el-tag
             :key="tag"
             v-for="tag in tags.dynamicTags"
@@ -93,9 +96,8 @@ export default {
   },
   data() {
     return {
-      user: {
-      },
-    tags: {
+      user: {},
+      tags: {
         dynamicTags: [],
         inputVisible: false,
         inputValue: ""
@@ -106,7 +108,7 @@ export default {
     preventSubmit() {},
     updateProfile() {
       alert("Update: " + JSON.stringify(this.user));
-      this.updatetEmployee()
+      this.updatetEmployee();
     },
     // example response
     //  {
@@ -145,9 +147,11 @@ export default {
         tel: "0817592466",
         status: 1
       };
-      employeeInformationService.updateEmployeeById(this.id,payload).then(result => {
-        this.user = result;
-      });
+      employeeInformationService
+        .updateEmployeeById(this.id, payload)
+        .then(result => {
+          this.user = result;
+        });
     },
     // tag function
     handleClose(tag) {

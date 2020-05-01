@@ -30,7 +30,7 @@
             </label>
           </div>
         </div>
-        
+
         <div class="col-sm-12">
           <el-table class="table-striped" :data="queriedData" border style="width: 100%">
             <el-table-column
@@ -115,6 +115,11 @@ export default {
       return this.tableData.length;
     }
   },
+  props: {
+    employeeId: {
+      type: String
+    }
+  },
   data() {
     return {
       pagination: {
@@ -170,20 +175,29 @@ export default {
         this.tableData.splice(indexToDelete, 1);
       }
     },
- 
     // "employee_id": "60090022",
     // "base_salary": 50000,
     // "base_hours": 160,
     // "overtime_rate": 100,
     // "bank_account": "4223475"
-    getAllPayroll() {
-      salaryManagementService.getAllPayroll().then(result => {
-        this.tableData = result;
-      });
+    getPayroll() {
+      salaryManagementService
+        .getPayrollById(this.employeeId)
+        //config for show Information
+        .then(result => {});
+    },
+
+    getPayment(){
+      salaryManagementService.getPaymentById(this.employeeId).then(
+        result => {
+          this.tableData = result
+        }
+      )
     }
   },
   mounted() {
-    this.getAllPayroll();
+    this.getPayroll();
+    this.getPayment();
   }
 };
 </script>

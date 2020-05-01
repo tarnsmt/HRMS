@@ -72,6 +72,7 @@ class JobManagementService {
         let url = this.base_Url + "projects/" + projectId + "?role=admin"
         return axios.put(url, payload).then(
             response => {
+                console.log(response.data)
                 return response.data
             }
         ).catch(error => {
@@ -99,6 +100,7 @@ class JobManagementService {
         let url = this.base_Url + "projects/" + projectId + "?role=admin"
         return axios.post(url,payload).then(
             response => {
+                console.log(response.data)
                 return response.data
             }
         )

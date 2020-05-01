@@ -67,13 +67,25 @@ let taskMenu = {
   ]
 }
 
+let salaryMenu = {
+  path: '/salaryManagement',
+  component: DashboardLayout,
+  children: [
+    {
+      path: ':employeeId',
+      name: 'Salary Employee',
+      component: SalaryTables,
+      props: true
+    },
+  ]
+}
+
 let tablesMenu = {
   path: '/table-list',
   component: DashboardLayout,
-  redirect: '/table-list/salary',
   children: [
     {
-      path: 'salary',
+      path: 'salaryManagement',
       name: 'Salary Tables',
       component: SalaryTables
     },
@@ -141,6 +153,7 @@ const routes = [
   },
   formsMenu,
   tablesMenu,
+  salaryMenu,
   pagesMenu,
   taskMenu,
   loginPage,
