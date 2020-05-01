@@ -18,6 +18,10 @@ export default [
     children: [{
       name: 'Task Forms',
       path: '/forms/task'
+    },
+    {
+      name: 'Account Forms',
+      path: '/forms/addaccount'
     }
     ]
   },

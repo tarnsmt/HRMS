@@ -28,19 +28,19 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/job-management': {
-        target: 'http://192.168.99.100:3000/',
+        target: 'http://0.0.0.0:3000/',
         changeOrigin: true
       },
       '/employee-information': {
-        target: 'http://192.168.99.100:3000/',
+        target: 'http://0.0.0.0:3000/',
         changeOrigin: true
       },
       '/salary-management': {
-        target: 'http://192.168.99.100:3000/',
+        target: 'http://0.0.0.0:3000/',
         changeOrigin: true
       },
       '/authentication':{
-        target: 'http://192.168.99.100:3000/',
+        target: 'http://0.0.0.0:3000/',
         changeOrigin: true
       }
     },
