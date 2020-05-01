@@ -170,7 +170,7 @@ export default {
         this.tableData.splice(indexToDelete, 1);
       }
     },
-    // 
+ 
     // "employee_id": "60090022",
     // "base_salary": 50000,
     // "base_hours": 160,
