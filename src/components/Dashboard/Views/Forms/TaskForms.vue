@@ -16,7 +16,6 @@
                     v-model="dateTimePicker"
                     type="datetime"
                     placeholder="select date and time"
-                    :picker-options="pickerOptions1"
                   ></el-date-picker>
                 </div>
               </div>

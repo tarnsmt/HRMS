@@ -95,6 +95,15 @@ class JobManagementService {
         let url = this.base_Url + "employee/" + employeeId + "/projects/" + projectId + "?role=admin"
     }
 
+    addTask(projectId,payload){
+        let url = this.base_Url + "projects/" + projectId + "?role=admin"
+        return axios.post(url,payload).then(
+            response => {
+                return response.data
+            }
+        )
+    }
+
 
     formatDate(date) {
         return [date.getDate(), date.getMonth() + 1, date.getFullYear()].join('/')

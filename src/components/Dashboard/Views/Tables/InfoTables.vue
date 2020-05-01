@@ -209,27 +209,6 @@ export default {
         this.tableData.splice(indexToDelete, 1);
       }
     },
-    // example response
-    //  {
-    //     "employee_id": "00000000",
-    //     "name": "admin@admin",
-    //     "date_of_birth": "2020-04-19T00:00:00.000Z",
-    //     "gender": 1,
-    //     "department": "HR",
-    //     "address": "Thailand",
-    //     "tel": "000-0000-000",
-    //     "status": 1,
-    //     "roles": [
-    //         {
-    //             "id": 30,
-    //             "role": "admin"
-    //         },
-    //         {
-    //             "id": 31,
-    //             "role": "employee"
-    //         }
-    //     ]
-    // }
     getAllEmployee() {
       employeeInformationService.getAllEmployee().then(result => {
         this.tableData = result;

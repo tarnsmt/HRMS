@@ -11,7 +11,8 @@
             <div class="col-md-12">
               <fg-input type="text"
                         label= "Task title"
-                        placeholder="Task title">
+                        placeholder="Task title"
+                        v-model="topic">
               </fg-input>
             </div>
           </div>
@@ -19,13 +20,14 @@
             <div class="col-md-12">
               <fg-input type="text"
                         label= "Task description"
-                        placeholder="Task description">
+                        placeholder="Task description"
+                        v-model="desc">
               </fg-input>
             </div>
           </div>
           <div class="clearfix"></div>
         </form>
-        <el-button class="button-new-tag" size="small" @click="updateAddTask">Add task</el-button>
+        <el-button class="button-new-tag" size="small" @click="addTask">Add task</el-button>
         <hr />
         <h4 class="card-title">{{ projectInfo.employee }}'s task in {{ projectInfo.project }}</h4>
         <!-- <p>{{ projectInfo.description }}</p> -->
@@ -59,7 +61,6 @@
 <script>
 import Vue from "vue";
 import { Table, TableColumn, Tag, Input, Button } from "element-ui";
-
 import { jobManagementService } from "src/services/JobManagementService";
 
 Vue.use(Table);
@@ -100,7 +101,9 @@ export default {
         {
           Topic: "Task3 for employee A1"
         }
-      ]
+      ],
+      desc:'',
+      topic:''
     };
   },
   methods: {
@@ -112,6 +115,18 @@ export default {
       jobManagementService. getTasksByEmployeeId(this.projectId,this.employeeId).then(
         result => {
           this.taskData = result
+        }
+      )
+    },
+    addTask(){
+      let payload = {
+        Topic: this.topic,
+        Note: this.desc,
+        Status: "complete"
+      }
+      jobManagementService.addTask(this.projectId,payload).then(
+        () => {
+          this.getTasks()
         }
       )
     }
