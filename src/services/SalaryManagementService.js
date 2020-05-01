@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-axios.defaults.headers.common = { 'Authorization': 'bearer ' + process.env.jwtToken }
+axios.defaults.headers.common = { 'Authorization': 'bearer ' + localStorage.getItem("user-token")}
 
 class SalaryManagementService {
     base_Url

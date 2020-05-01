@@ -20,7 +20,6 @@
         <div class="col-sm-6">
           <!-- search filter for employee info -->
 
-
           <!-- add employee button -->
           <div class="pull-right">
             <label>
@@ -32,13 +31,7 @@
                 aria-controls="datatables"
               />
             </label>
-            <router-link :to="`/pages/useradd`">
-            <el-button 
-              class="button-new-tag" 
-              size="large" >
-              Add 
-            </el-button>
-            </router-link>
+              <el-button class="button-new-tag" size="large" @click="toAdd">Add</el-button>
           </div>
         </div>
         <div class="col-sm-12">
@@ -104,13 +97,15 @@ Vue.use(Select);
 Vue.use(Option);
 export default {
   components: {
-    PPagination, PSwitch, [Button.name]: Button
+    PPagination,
+    PSwitch,
+    [Button.name]: Button
   },
   computed: {
     pagedData() {
       return this.tableData.slice(this.from, this.to);
     },
-    
+
     /***
      * Searches through table data and returns a paginated array.
      * Note that this should not be used for table with a lot of data as it might be slow!
@@ -184,13 +179,22 @@ export default {
       ],
       searchVal: Array,
       tableData: users,
-      employeeId: String
+      employeeId: String,
+      isAdmin: Boolean
     };
   },
   methods: {
+    toAdd() {
+      console.log(this.isAdmin)
+      if (this.isAdmin) {
+        this.$router.push({ name: "addEmployee" });
+        return
+      }
+      alert(`You are not admin`);
+    },
     handleEdit(index, row) {
       alert(`Your want to edit ${row.name}`);
-      this.employeeId = row.id
+      this.employeeId = "employeeId";
     },
     handleDelete(index, row) {
       alert(`Your want to delete ${row.name}`);
@@ -203,6 +207,7 @@ export default {
     },
     getAllEmployee() {
       employeeInformationService.getAllEmployee().then(result => {
+        this.isAdmin = result.isAdmin;
         this.tableData = result;
       });
     }

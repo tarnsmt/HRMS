@@ -127,6 +127,9 @@ export default {
       jobManagementService.createProject(payload).then(
         id => {
           this.$router.push({name: 'Task Tables',params: {projectId:id}});
+        },
+        error => {
+          alert ('You are not admin')
         }
       )
       

@@ -105,6 +105,7 @@ export default {
 
     getAllProjects: function() {
       jobManagementService.getAllProjects().then(result => {
+        console.log(result)
         this.tableData = result;
       });
     }

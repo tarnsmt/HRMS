@@ -25,7 +25,7 @@
 
         <div class="row">
           <div class="col-md-6">
-            <fg-input type="text" label="Salary" placeholder="Salary" v-model="user.salary"></fg-input>
+            <fg-input type="text" label="Salary" placeholder="Salary" v-model="user.date_of_birth"></fg-input>
           </div>
           <div class="col-md-6">
             <label>Department</label>
@@ -101,50 +101,43 @@ export default {
         dynamicTags: [],
         inputVisible: false,
         inputValue: ""
-      }
+      },
+      isAdmin: Boolean
     };
   },
   methods: {
     preventSubmit() {},
     updateProfile() {
+      if(this.isAdmin == false){
+        alert("You are not admin");
+        return
+      }
       alert("Update: " + JSON.stringify(this.user));
       this.updatetEmployee();
     },
-    // example response
-    //  {
-    //     "employee_id": "00000000",
-    //     "name": "admin@admin",
-    //     "date_of_birth": "2020-04-19T00:00:00.000Z",
-    //     "gender": 1,
-    //     "department": "HR",
-    //     "address": "Thailand",
-    //     "tel": "000-0000-000",
-    //     "status": 1,
-    //     "roles": [
-    //         {
-    //             "id": 30,
-    //             "role": "admin"
-    //         },
-    //         {
-    //             "id": 31,
-    //             "role": "employee"
-    //         }
-    //     ]
-    // }
     getEmployee() {
       employeeInformationService.getEmployeeById(this.id).then(result => {
+        this.isAdmin = result.isAdmin
+        result.date_of_birth = new Date(result.date_of_birth).toDateString('en-GB')
+        this.user =[]
+        this.tags.dynamicTags = []
         this.user = result;
+        let resultRole = []
+        for(let role of result.roles){
+          resultRole.push(role.role)
+        }
+        this.tags.dynamicTags = resultRole
       });
     },
     updatetEmployee() {
       //config later
       let payload = {
-        name: "Nutthapat Phoomara",
-        roles: ["admin", "employee"],
-        date_of_birth: "22/02/1999",
-        gender: 1,
-        address: "USA",
-        tel: "0817592466",
+        name: this.user.name,
+        roles: this.tags.dynamicTags,
+        date_of_birth:this.user.date_of_birth,
+        gender: this.user.gender,
+        address: this.user.address,
+        tel: this.user.tel,
         status: 1
       };
       employeeInformationService

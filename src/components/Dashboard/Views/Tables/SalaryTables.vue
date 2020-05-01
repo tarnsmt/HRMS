@@ -4,11 +4,11 @@
       <div class="card-header"></div>
       <div class="card-content row">
         <div class="col-sm-6">
-          <h4 class="card-title">Employee_id</h4>
-          <p class="category">Base_salary </p>
-          <p class="category">Base_hours </p>
-          <p class="category">Overtime_rate </p>
-          <p class="category">Bank_account </p>
+          <h4 class="card-title">{{employeeId}}</h4>
+          <p class="category">Base_salary: {{base_salary}} </p>
+          <p class="category">Base_hours {{base_hours}}</p>
+          <p class="category">Overtime_rate {{overtime_rate}} </p>
+          <p class="category">Bank_account {{bank_account}}</p>
           <br>
         </div>
       </div>
@@ -17,7 +17,7 @@
     <div class="col-md-7 card" style="margin-left:20px">
       <div class="card-content row">
         <div class="col-sm-12">
-          <el-table class="table-striped" :data="queriedData" border style="width: 100%">
+          <el-table class="table-striped" border style="width: 100%" :data="tableData">
             <el-table-column
               v-for="column in tableColumns"
               :key="column.label"
@@ -56,9 +56,9 @@ export default {
     return {
       tableColumns: [
         {
-          prop: "employee_id",
-          label: "ID",
-          minWidth: 120
+          prop: "date",
+          label: "Date",
+          minWidth: 130
         },
         {
           prop: "tax",
@@ -71,15 +71,14 @@ export default {
           minWidth: 100
         }
       ],
-      tableData: users
+      tableData: users,
+      base_salary: '',
+      base_hours:'',
+      overtime_rate:'',
+      bank_account:''
     };
   },
   methods: {
-    getEmployee() {
-      employeeInformationService.getEmployeeById(this.id).then(result => {
-        this.user = result;
-      });
-    },
     handleLike(index, row) {
       alert(`Your want to like ${row.name}`);
     },
@@ -94,21 +93,26 @@ export default {
         this.tableData.splice(indexToDelete, 1);
       }
     },
-    // "employee_id": "60090022",
-    // "base_salary": 50000,
-    // "base_hours": 160,
-    // "overtime_rate": 100,
-    // "bank_account": "4223475"
     getPayroll() {
       salaryManagementService
         .getPayrollById(this.employeeId)
         //config for show Information
-        .then(result => {});
+        .then(result => {
+          this.base_salary = result.base_salary
+          this.base_hours = result.base_hours
+          this.overtime_rate = result.overtime_rate
+          this.bank_account = result.bank_account
+        });
     },
 
     getPayment(){
       salaryManagementService.getPaymentById(this.employeeId).then(
         result => {
+          let list = []
+          for(let data of result){
+              data.date = new Date(data.date).toLocaleString()
+              list.push(data)
+          }
           this.tableData = result
         }
       )
@@ -117,7 +121,6 @@ export default {
   mounted() {
     this.getPayroll();
     this.getPayment();
-    this.getEmployee();
   }
 };
 </script>

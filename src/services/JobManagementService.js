@@ -1,11 +1,28 @@
 import axios from 'axios'
 
-axios.defaults.headers.common = { 'Authorization': 'bearer ' + process.env.jwtToken }
+axios.defaults.headers.common = { 'Authorization': 'bearer ' + localStorage.getItem("user-token") }
 
 class JobManagementService {
     base_Url
     constructor() {
         this.base_Url = "/job-management/"
+    }
+    getProject() {
+        let url = this.base_Url + "projects"
+        return axios.get(url).then(
+            response => {
+                return response.data
+            }
+        )
+    }
+
+    getTaskByProject(projectId) {
+        let url = this.base_Url + "projects/" + projectId
+        return axios.get(url).then(
+            response => {
+                return response.data
+            }
+        )
     }
 
     getAllProjects() {
@@ -13,19 +30,31 @@ class JobManagementService {
         return axios.get(url).then(
             response => {
                 let projects = []
-                for (let element of response.data) {
-                    console.log(element)
-                    let result = {
-                        id: element.ID,
-                        project: element.Name,
-                        description:
-                            element.Department,
-                        active: true,
-                        start: this.formatDate(new Date(element.Start_date)),
-                        due: this.formatDate(new Date(element.Due_date)),
+                for (var element of response.data) {
+                    if (element.Employee_ID != undefined) {
+                        projects.push({
+                            id: element.Project.ID,
+                            project: element.Project.Name,
+                            description: element.Project.Department,
+                            active: true,
+                            start: this.formatDate(new Date(element.Project.Start_date)),
+                            due: this.formatDate(new Date(element.Project.Due_date)),
+                        })
                     }
-                    projects.push(result)
+                    else {
+                        let result = {
+                            id: element.ID,
+                            project: element.Name,
+                            description:
+                                element.Department,
+                            active: true,
+                            start: this.formatDate(new Date(element.Start_date)),
+                            due: this.formatDate(new Date(element.Due_date)),
+                        }
+                        projects.push(result)
+                    }
                 }
+
                 return projects
             }
         ).catch(error => {
@@ -96,9 +125,9 @@ class JobManagementService {
         let url = this.base_Url + "employee/" + employeeId + "/projects/" + projectId + "?role=admin"
     }
 
-    addTask(projectId,payload){
-        let url = this.base_Url + "projects/" + projectId + "?role=admin"
-        return axios.post(url,payload).then(
+    addTask(projectId, payload) {
+        let url = this.base_Url + "projects/" + projectId
+        return axios.post(url, payload).then(
             response => {
                 console.log(response.data)
                 return response.data
