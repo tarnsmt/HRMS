@@ -19,6 +19,9 @@
         </div>
         <div class="col-sm-6">
           <!-- search filter for employee info -->
+
+
+          <!-- add employee button -->
           <div class="pull-right">
             <label>
               <input
@@ -29,16 +32,19 @@
                 aria-controls="datatables"
               />
             </label>
-          </div>
-          <!-- add employee button -->
-          <div class="pull-right">
+            <router-link :to="`/table-list/salary`">
+            <el-button 
+              class="button-new-tag" 
+              size="large">
+              Salary Employee
+            </el-button>
+            </router-link>
             <router-link :to="`/pages/useradd`">
             <el-button 
-              style="margin-right:10px"
               class="button-new-tag" 
               size="large" 
               @click="updateAddEmployee">
-              Add employee
+              Add 
             </el-button>
             </router-link>
           </div>

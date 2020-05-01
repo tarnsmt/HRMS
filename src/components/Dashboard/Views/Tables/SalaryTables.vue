@@ -30,6 +30,7 @@
             </label>
           </div>
         </div>
+        
         <div class="col-sm-12">
           <el-table class="table-striped" :data="queriedData" border style="width: 100%">
             <el-table-column

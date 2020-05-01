@@ -31,10 +31,6 @@ export default [
     icon: 'ti-user',
     collapsed: true,
     children: [{
-      name: 'Salary',
-      path: '/table-list/salary'
-    },
-    {
       name: 'Information',
       path: '/table-list/info'
     }
