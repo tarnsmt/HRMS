@@ -18,6 +18,8 @@ import Register from 'src/components/Dashboard/Views/Pages/Register.vue'
 import TaskForms from 'src/components/Dashboard/Views/Forms/TaskForms.vue'
 import EditTaskForms from 'src/components/Dashboard/Views/Forms/EditTaskForms.vue'
 import EmployeeEditTask from 'src/components/Dashboard/Views/Forms/EmployeeEditTask.vue'
+import AddAccountForms from 'src/components/Dashboard/Views/Forms/AddAccountForms.vue'
+
 
 // TableList pages
 import SalaryTables from 'src/components/Dashboard/Views/Tables/SalaryTables.vue'
@@ -37,6 +39,11 @@ let formsMenu = {
       path: 'task',
       name: 'Task Forms',
       component: TaskForms
+    },
+    {
+      path: 'addaccount',
+      name: 'Add account for an employee',
+      component: AddAccountForms
     }
   ]
 }
