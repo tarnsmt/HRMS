@@ -5,10 +5,10 @@
         <input type="checkbox" value="" data-toggle="checkbox">
       </label>
     </td>
-    <td>{{task.project}}</td>
+    <td>{{task.Project.Name}}</td>
     <td class="td-actions text-right">
       <div class="table-icons">
-        <router-link to="/table-list/task">
+        <router-link to="/jobManagement/project/employeeEditTask">
           <button type="button"
                   rel="tooltip"
                   title="Edit Task"
@@ -31,19 +31,15 @@
     props: {
       task: {
         type: Object,
-        default: () => {
-          return {
-            project: ''
-          }
-        }
       },
-      index: Number
+      index: Number,
     },
     methods: {
       handleEditClick () {
+        localStorage.setItem('on-project',JSON.stringify(this.task.Project))
         this.$emit('on-edit', this.index)
       }
-    }
+    },
   }
 </script>
 <style>

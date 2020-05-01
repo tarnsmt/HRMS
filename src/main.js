@@ -22,6 +22,11 @@ import './assets/sass/element_variables.scss'
 import './assets/sass/demo.scss'
 
 import sidebarLinks from './sidebarLinks'
+
+// for axios
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(GlobalDirectives)
@@ -29,7 +34,10 @@ Vue.use(GlobalComponents)
 Vue.use(VueNotify)
 Vue.use(SideBar, {sidebarLinks: sidebarLinks})
 Vue.use(VeeValidate)
+Vue.use(VueAxios, axios)
 locale.use(lang)
+
+
 
 // configure router
 const router = new VueRouter({

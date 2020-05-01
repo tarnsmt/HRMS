@@ -1,0 +1,99 @@
+version: '3.0'
+services:
+    rabbitmq:
+        image: rabbitmq:3.8.3-management
+        restart: always
+        ports: 
+            - 5672:5672
+            - 15672:15672
+        networks: 
+            - new
+        container_name: hrms-rabbitmq
+    mongo:
+        image: nutthapat1423/hrms-mongo
+        restart: always
+        ports: 
+            - 27017:27017
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+        networks: 
+            - new
+        container_name: hrms-mongo
+       
+    db:
+        image: nutthapat1423/hrms-sql
+        restart: always
+        ports: 
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+            - new
+        container_name: hrms-sql
+
+    service-attendance:
+        image: nutthapat1423/hrms-attendance
+        depends_on:
+            - db
+            - rabbitmq
+        networks:
+            - new
+        container_name: hrms-attendace
+
+    service-employee-information:
+        image: nutthapat1423/hrms-employee-information
+        depends_on: 
+            - db
+            - rabbitmq
+        networks: 
+            - new
+        container_name: hrms-employee-information
+
+    service-authentication:
+        image: nutthapat1423/hrms-authentication
+        depends_on: 
+            - mongo
+            - service-employee-information
+            - rabbitmq
+        networks: 
+            - new
+        container_name: hrms-authentication
+
+    service-job-management:
+        image: nutthapat1423/hrms-job-management
+        depends_on: 
+            - db
+            - rabbitmq
+        networks: 
+            - new
+        container_name: hrms-job-management
+
+    service-salary-management:
+        image: nutthapat1423/hrms-salary-management
+        depends_on: 
+            - db
+            - rabbitmq
+        networks: 
+            - new
+        container_name: hrms-salary-management
+
+    server-client:
+        image: nutthapat1423/hrms-client
+        ports: 
+            - 3000:3000
+        depends_on: 
+            - mongo
+            - db
+            - rabbitmq
+            - service-employee-information
+            - service-authentication
+            - service-attendance
+            - service-job-management
+            - service-salary-management
+        networks: 
+            - new
+        container_name: hrms-client
+            
+networks:
+  new:

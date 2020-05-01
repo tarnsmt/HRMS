@@ -1,11 +1,9 @@
 <template>
-  <div class="card">
+  <div class="card col-lg-8 col-md-7 col-md-offset-2">
     <div class="card-header">
-      <h4 class="title">Edit Profile</h4>
-      <router-link :to="`/salaryManagement/${this.id}`">
-        <el-button class="button-new-tag" size="large">Salary Employee</el-button>
-      </router-link>
+      <h4 class="title">Add Employee</h4>
     </div>
+
     <div class="card-content">
       <form v-on:keydown.enter.prevent="preventSubmit">
         <div class="row">
@@ -15,17 +13,38 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <fg-input type="number" label="ID" placeholder="Employee ID" v-model="user.id"></fg-input>
+          </div>
+          <div class="col-md-4">
             <fg-input type="text" label="Address" placeholder="Address" v-model="user.address"></fg-input>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <fg-input type="text" label="Tel" placeholder="Tel" v-model="user.tel"></fg-input>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <fg-input type="text" label="Salary" placeholder="Salary" v-model="user.date_of_birth"></fg-input>
+            <fg-input
+              type="text"
+              label="Date Of Birth"
+              placeholder="Date Of Birth"
+              v-model="user.date_of_birth"
+            ></fg-input>
+          </div>
+          <div class="col-md-6">
+            <label>Gender</label>
+            <br />
+            <el-radio v-model="user.gender" label="male">Male</el-radio>
+            <el-radio v-model="user.gender" label="female">Female</el-radio>
+            <br />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <fg-input type="text" label="Salary" placeholder="Salary" v-model="user.salary"></fg-input>
           </div>
           <div class="col-md-6">
             <label>Department</label>
@@ -70,9 +89,10 @@
           <button
             type="submit"
             class="btn btn-fill btn-wd"
-            @click.prevent="updateProfile"
+            @click.prevent="addProfile"
             style="margin-top:15px"
-          >Update Profile</button>
+
+          >Add Profile</button>
         </div>
         <div class="clearfix"></div>
       </form>
@@ -81,70 +101,76 @@
 </template>
 <script>
 import { employeeInformationService } from "src/services/EmployeeInformationService";
-import { Tag, Input, Button } from "element-ui";
+import {
+  Tag,
+  Input,
+  Button,
+  Radio,
+  DatePicker,
+  TimeSelect,
+  Option,
+  Select
+} from "element-ui";
 
 export default {
   components: {
+    [DatePicker.name]: DatePicker,
+    [TimeSelect.name]: TimeSelect,
     [Tag.name]: Tag,
     [Input.name]: Input,
-    [Button.name]: Button
-  },
-  props: {
-    id: {
-      type: String
-    }
+    [Button.name]: Button,
+    [Radio.name]: Radio,
+    [Option.name]: Option,
+    [Select.name]: Select
   },
   data() {
     return {
-      user: {},
+      user: {
+        id:"",
+        name: "",
+        address: "",
+        tel: "",
+        date_of_birth: "",
+        gender: "male",
+        department: ""
+      },
+      datePicker: "",
+      ss: "",
+      timePicker: "",
       tags: {
         dynamicTags: [],
         inputVisible: false,
         inputValue: ""
-      },
-      isAdmin: Boolean
+      }
     };
   },
   methods: {
     preventSubmit() {},
-    updateProfile() {
-      if(this.isAdmin == false){
-        alert("You are not admin");
-        return
-      }
-      alert("Update: " + JSON.stringify(this.user));
-      this.updatetEmployee();
+    addProfile() {
+      alert("Add: " + JSON.stringify(this.user));
+      this.addEmployee();
     },
-    getEmployee() {
-      employeeInformationService.getEmployeeById(this.id).then(result => {
-        this.isAdmin = result.isAdmin
-        result.date_of_birth = new Date(result.date_of_birth).toDateString('en-GB')
-        this.user =[]
-        this.tags.dynamicTags = []
-        this.user = result;
-        let resultRole = []
-        for(let role of result.roles){
-          resultRole.push(role.role)
-        }
-        this.tags.dynamicTags = resultRole
-      });
-    },
-    updatetEmployee() {
-      //config later
+
+    addEmployee() {
+      let genderNumber = (this.user === "male") ? 1 : 2;
+      let roles = []
+      for (let pos in this.tags.dynamicTags)
+          roles.push(pos)
       let payload = {
+        employee_id: this.user.id,
         name: this.user.name,
-        roles: this.tags.dynamicTags,
-        date_of_birth:this.user.date_of_birth,
-        gender: this.user.gender,
+        date_of_birth: this.user.date_of_birth,
+        gender: genderNumber,
         address: this.user.address,
+        department: this.user.department,
         tel: this.user.tel,
-        status: 1
+        roles: roles,
+        status: 1,
+       
       };
-      employeeInformationService
-        .updateEmployeeById(this.id, payload)
-        .then(result => {
-          this.user = result;
-        });
+      employeeInformationService.createEmployee(payload).then(result => {
+          this.$router.push({name: 'Edit Employee Information',params: {employeeId:this.user.id}});
+      });
     },
     // tag function
     handleClose(tag) {
@@ -166,9 +192,7 @@ export default {
       this.tags.inputValue = "";
     }
   },
-  mounted() {
-    this.getEmployee();
-  }
+  mounted() {}
 };
 </script>
 <style>

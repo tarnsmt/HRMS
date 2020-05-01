@@ -8,6 +8,7 @@ import Overview from 'src/components/Dashboard/Views/Dashboard/Overview.vue'
 import User from 'src/components/Dashboard/Views/Dashboard/User.vue'
 
 // Pages
+import UserAdd from 'src/components/Dashboard/Views/Pages/UserAdd.vue'
 import UserEdit from 'src/components/Dashboard/Views/Pages/UserEdit.vue'
 import EachTaskEdit from 'src/components/Dashboard/Views/Pages/EachTaskEdit.vue'
 import Login from 'src/components/Dashboard/Views/Pages/Login.vue'
@@ -16,6 +17,8 @@ import Register from 'src/components/Dashboard/Views/Pages/Register.vue'
 // Forms pages
 import TaskForms from 'src/components/Dashboard/Views/Forms/TaskForms.vue'
 import EditTaskForms from 'src/components/Dashboard/Views/Forms/EditTaskForms.vue'
+import EmployeeEditTask from 'src/components/Dashboard/Views/Forms/EmployeeEditTask.vue'
+import AddAccountForms from 'src/components/Dashboard/Views/Forms/AddAccountForms.vue'
 
 
 // TableList pages
@@ -36,49 +39,74 @@ let formsMenu = {
       path: 'task',
       name: 'Task Forms',
       component: TaskForms
+    },
+    {
+      path: 'addaccount',
+      name: 'Add account for an employee',
+      component: AddAccountForms
     }
   ]
 }
 
 
 let taskMenu = {
-  path: '/table-list',
+  path: '/jobManagement',
   component: DashboardLayout,
-  redirect: '/table-list/taskedit',
   children: [
     {
-      path: 'taskedit',
+      path: 'project/:projectId/employee/:employeeId',
       name: 'Task Edit Forms',
-      component: EditTaskForms
+      component: EditTaskForms,
+      props: true
+    },
+    {
+      path: 'project/employeeEditTask',
+      name: 'Task Edit Forms For Employee',
+      component: EmployeeEditTask,
+      props: true
+    },
+    {
+      path: 'project/:projectId',
+      name: 'Task Tables',
+      component: TaskTables,
+      props: true
     }
+  ]
+}
+
+let salaryMenu = {
+  path: '/salaryManagement',
+  component: DashboardLayout,
+  children: [
+    {
+      path: ':employeeId',
+      name: 'Salary Employee',
+      component: SalaryTables,
+      props: true
+    },
   ]
 }
 
 let tablesMenu = {
   path: '/table-list',
   component: DashboardLayout,
-  redirect: '/table-list/salary',
   children: [
     {
-      path: 'salary',
+      path: 'salaryManagement',
       name: 'Salary Tables',
       component: SalaryTables
     },
     {
       path: 'jobManagement',
       name: 'Job Management',
-      component: JobManageTables
+      component: JobManageTables,
     },
     {
       path: 'info',
       name: 'Employee Information',
       component: InfoTables
     },
-    {
-      path: 'task',
-      name: 'Task Tables',
-      component: TaskTables
-    }]
+  ]
 }
 
 let pagesMenu = {
@@ -87,9 +115,15 @@ let pagesMenu = {
   redirect: '/pages/useredit',
   children: [
     {
-      path: 'useredit',
+      path: 'useredit/:employeeId',
       name: 'Edit Employee Information',
-      component: UserEdit
+      component: UserEdit,
+      props: true
+    },
+    {
+      path: 'useradd',
+      name: 'addEmployee',
+      component: UserAdd,
     },
     {
       path: 'eachtaskedit',
@@ -115,7 +149,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview',
+    redirect: '/login',
     children: [
       {
         path: 'calendar',
@@ -126,6 +160,7 @@ const routes = [
   },
   formsMenu,
   tablesMenu,
+  salaryMenu,
   pagesMenu,
   taskMenu,
   loginPage,
@@ -147,7 +182,7 @@ const routes = [
       }
     ]
   },
-  {path: '*', component: NotFound}
+  { path: '*', component: NotFound }
 ]
 
 /**

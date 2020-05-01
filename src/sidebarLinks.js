@@ -18,6 +18,10 @@ export default [
     children: [{
       name: 'Task Forms',
       path: '/forms/task'
+    },
+    {
+      name: 'Account Forms',
+      path: '/forms/addaccount'
     }
     ]
   },
@@ -31,10 +35,6 @@ export default [
     icon: 'ti-user',
     collapsed: true,
     children: [{
-      name: 'Salary',
-      path: '/table-list/salary'
-    },
-    {
       name: 'Information',
       path: '/table-list/info'
     }

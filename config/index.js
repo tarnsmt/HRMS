@@ -3,7 +3,7 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index:  path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '',
@@ -26,7 +26,24 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/job-management': {
+        target: 'http://192.168.99.100:3000/',
+        changeOrigin: true
+      },
+      '/employee-information': {
+        target: 'http://192.168.99.100:3000/',
+        changeOrigin: true
+      },
+      '/salary-management': {
+        target: 'http://192.168.99.100:3000/',
+        changeOrigin: true
+      },
+      '/authentication':{
+        target: 'http://192.168.99.100:3000/',
+        changeOrigin: true
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

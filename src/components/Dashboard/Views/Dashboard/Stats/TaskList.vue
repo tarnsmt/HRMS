@@ -9,7 +9,7 @@
         <table class="table">
           <tbody>
           <task v-for="(task, index) in tableData"
-                :key="task.project"
+                :key="task.Name"
                 :task="task"
                 :index="index"
                 @on-edit="handleTaskEdit">
@@ -28,6 +28,7 @@
 </template>
 <script>
   import Task from './Task.vue'
+  import { jobManagementService } from "src/services/JobManagementService";
 
   export default {
     components: {
@@ -54,7 +55,19 @@
     methods: {
       handleTaskEdit (index) {
         alert(`You want to edit task: ${JSON.stringify(this.tasks[index])}`)
+      },
+      getProject(){
+        jobManagementService.getProject().then(
+          result => {
+            this.tableData = []
+            for (let project of result)
+              this.tableData.push(project)
+          }
+        )
       }
+    },
+    mounted(){
+      this.getProject()
     }
   }
 </script>
