@@ -154,7 +154,7 @@ export default {
     addEmployee() {
       let genderNumber = (this.user === "male") ? 1 : 2;
       let roles = []
-      for (let pos in this.tags.dynamicTags)
+      for (let pos of this.tags.dynamicTags)
           roles.push(pos)
       let payload = {
         employee_id: this.user.id,
