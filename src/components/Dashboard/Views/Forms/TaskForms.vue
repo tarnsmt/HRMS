@@ -126,6 +126,7 @@ export default {
       }
       jobManagementService.createProject(payload).then(
         id => {
+          console.log(id)
           this.$router.push({name: 'Task Tables',params: {projectId:id}});
         },
         error => {

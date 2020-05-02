@@ -129,8 +129,10 @@ export default {
     },
     getProject() {
       jobManagementService.getProjectById(this.projectId).then(result => {
-        this.taskInfo = result;
-        for (let element of result)
+        this.taskInfo = result.taskInfo;
+        this.projectInfo.project = result.Name
+        this.projectInfo.description = result.Department
+        for (let element of result.Members)
           this.tags.dynamicTags.push(element.employee);
       });
     },

@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 class AuthenticationService {
-    base_Url 
+    base_Url
     constructor() {
-        this.base_Url = process.env.url + "/authentication/"
+        this.base_Url = "/authentication/"
     }
 
     login(payload){
