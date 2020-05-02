@@ -132,8 +132,11 @@ export default {
         this.taskInfo = result.taskInfo;
         this.projectInfo.project = result.Name
         this.projectInfo.description = result.Department
-        for (let element of result.Members)
-          this.tags.dynamicTags.push(element.employee);
+        for (let element of result.Members){
+            console.log(element)
+            this.tags.dynamicTags.push(element.Employee_ID);
+        }
+      
       });
     },
     updateProject(){

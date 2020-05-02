@@ -194,7 +194,7 @@ export default {
     },
     handleEdit(index, row) {
       alert(`Your want to edit ${row.name}`);
-      this.employeeId = "employeeId";
+      this.employeeId = row.employee_id;
     },
     handleDelete(index, row) {
       alert(`Your want to delete ${row.name}`);
