@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "dev": "cross-env ENABLE_ESLINT=true node build/dev-server.js",
     "build": "cross-env ENABLE_ESLINT=true node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
@@ -13,7 +14,6 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
-    "@vue/cli-service": "^4.3.1",
     "chartist": "^0.11.0",
     "easy-pie-chart": "^2.1.7",
     "element-ui": "^2.0.3",
@@ -23,6 +23,7 @@
     "jvectormap-next": "^3.0.0",
     "moment": "^2.24.0",
     "perfect-scrollbar": "0.7.1",
+    "serve-static": "^1.14.1",
     "sweetalert2": "^6.11.4",
     "vee-validate": "^2.0.0-rc.21",
     "vue": "^2.5.21",
@@ -64,7 +65,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.14.1",
+    "express": "^4.17.1",
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.11.1",
     "friendly-errors-webpack-plugin": "^1.1.3",

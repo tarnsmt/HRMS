@@ -6,7 +6,7 @@ axios.defaults.headers.common = { 'Authorization': 'bearer ' + localStorage.getI
 class SalaryManagementService {
     base_Url
     constructor() {
-        this.base_Url = "/salary-management"
+        this.base_Url = process.env.url + "/salary-management"
     }
 
     getAllPayroll() {

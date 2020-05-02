@@ -5,7 +5,7 @@ axios.defaults.headers.common = { 'Authorization': 'bearer ' + localStorage.getI
 class JobManagementService {
     base_Url
     constructor() {
-        this.base_Url = "/job-management/"
+        this.base_Url = process.env.url + "/job-management/"
     }
     getProject() {
         let url = this.base_Url + "projects"
